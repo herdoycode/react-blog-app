@@ -1,0 +1,28 @@
+.hero {
+  height: calc(100vh - 80px);
+  display: grid;
+  grid-template: repeat(1, 1fr) / repeat(2, 1fr);
+}
+.hero__left {
+  display: flex;
+  align-items: center;
+}
+.hero__content h1 {
+  font-size: 70px;
+  color: var(--color-dark);
+}
+.hero__content p {
+  font-size: 30px;
+  margin-bottom: 15px;
+}
+.hero__right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media screen and (max-width: 768px) {
+  .hero {
+    grid-template: repeat(2, 1fr) / repeat(1, 1fr);
+  }
+}
