@@ -14,9 +14,7 @@ const Pagination = () => {
       <div className="page__item">
         <div className="page__link">4</div>
       </div>
-      <div className="page__item">
-        <div className="page__link">4</div>
-      </div>
+
       <div className="page__item page__next">
         <div className="page__link">Next</div>
       </div>

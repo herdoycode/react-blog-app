@@ -15,21 +15,6 @@ const Archives = () => {
         <div className="archive__item">
           <span>Design</span> <span className="archive__count">90</span>
         </div>
-        <div className="archive__item">
-          <span>Design</span> <span className="archive__count">90</span>
-        </div>
-        <div className="archive__item">
-          <span>Design</span> <span className="archive__count">90</span>
-        </div>
-        <div className="archive__item">
-          <span>Design</span> <span className="archive__count">90</span>
-        </div>
-        <div className="archive__item">
-          <span>Design</span> <span className="archive__count">90</span>
-        </div>
-        <div className="archive__item">
-          <span>Design</span> <span className="archive__count">90</span>
-        </div>
       </div>
     </div>
   );

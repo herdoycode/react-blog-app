@@ -12,6 +12,8 @@ import Category from "../../Components/Category/Category";
 import Archives from "../../Components/Archives/Archives";
 import RecentPosts from "../../Components/RecentPosts/RecentPosts";
 import Tags from "../../Components/Tags/Tags";
+import Footer from "../../Components/Footer/Footer";
+import Copyright from "../../Components/Copyright/Copyright";
 
 const Home = () => {
   return (
@@ -60,6 +62,8 @@ const Home = () => {
           </div>
         </div>
       </div>
+      <Footer />
+      <Copyright />
     </>
   );
 };

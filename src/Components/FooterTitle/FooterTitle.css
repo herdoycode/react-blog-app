@@ -1,0 +1,13 @@
+.footer__title {
+  color: #fff;
+  position: relative;
+}
+.footer__title::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 80px;
+  height: 5px;
+  background: #fff;
+}

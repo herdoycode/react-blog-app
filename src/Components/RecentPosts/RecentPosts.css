@@ -1,5 +1,4 @@
 .recent__posts {
-  margin: 20px 0px;
   display: flex;
   align-items: center;
   padding: 15px;
@@ -13,6 +12,8 @@
 }
 .recent__posts img {
   border-radius: 10px;
+  height: 100px;
+  width: auto;
 }
 .recent__post__content {
   display: flex;

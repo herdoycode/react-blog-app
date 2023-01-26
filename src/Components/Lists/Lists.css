@@ -1,0 +1,14 @@
+.lists {
+  margin: 0;
+  padding: 0;
+}
+.list__item {
+  margin: 10px 0px;
+}
+.list__link {
+  color: #fff;
+}
+.list__item:hover {
+  margin-left: 10px;
+  transition: 0.3s ease-in-out;
+}

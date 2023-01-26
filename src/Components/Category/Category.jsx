@@ -18,9 +18,6 @@ const Category = () => {
         <div className="category__item">
           <span>Design</span> <span className="category__count">90</span>
         </div>
-        <div className="category__item">
-          <span>Design</span> <span className="category__count">90</span>
-        </div>
       </div>
     </div>
   );
