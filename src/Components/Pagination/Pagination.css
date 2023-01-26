@@ -1,0 +1,25 @@
+.pagination {
+  display: flex;
+  gap: 10px;
+}
+.page__item {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ddd;
+  cursor: pointer;
+}
+.page__item:hover {
+  background: linear-gradient(90deg, var(--color-primary), var(--primary-alt));
+  transition: 0.2s;
+  color: #fff;
+}
+.page__prev,
+.page__next {
+  border-radius: 25px;
+  padding: 0px 25px;
+  width: auto !important;
+}
