@@ -1,0 +1,28 @@
+.recent__posts {
+  margin: 20px 0px;
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  gap: 10px;
+  border-radius: 25px;
+  cursor: pointer;
+}
+.recent__posts:hover {
+  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1);
+  transition: 0.3s ease;
+}
+.recent__posts img {
+  border-radius: 10px;
+}
+.recent__post__content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.recent__post__content p {
+  color: var(--color-dark);
+}
+.recent__post__content p:hover {
+  color: var(--primary-alt);
+  transition: 0.2s ease;
+}

@@ -5,8 +5,13 @@ import AccessAlarmsOutlinedIcon from "@mui/icons-material/AccessAlarmsOutlined";
 import Person2OutlinedIcon from "@mui/icons-material/Person2Outlined";
 import ModeCommentOutlinedIcon from "@mui/icons-material/ModeCommentOutlined";
 import ShareRoundedIcon from "@mui/icons-material/ShareRounded";
+import SearchBox from "../../Components/SearchBox/SearchBox";
 import "./Home.css";
 import { posts } from "../../data";
+import Category from "../../Components/Category/Category";
+import Archives from "../../Components/Archives/Archives";
+import RecentPosts from "../../Components/RecentPosts/RecentPosts";
+import Tags from "../../Components/Tags/Tags";
 
 const Home = () => {
   return (
@@ -46,7 +51,13 @@ const Home = () => {
               <Pagination />
             </div>
           </div>
-          <div className="sidebar"></div>
+          <div className="sidebar">
+            <SearchBox />
+            <Category />
+            <RecentPosts />
+            <Archives />
+            <Tags />
+          </div>
         </div>
       </div>
     </>

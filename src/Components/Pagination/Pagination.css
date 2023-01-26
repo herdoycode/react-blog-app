@@ -9,8 +9,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid #ddd;
   cursor: pointer;
+  background: #fff;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
 }
 .page__item:hover {
   background: linear-gradient(90deg, var(--color-primary), var(--primary-alt));
