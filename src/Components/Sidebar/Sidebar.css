@@ -1,0 +1,12 @@
+.sidebar {
+  padding-left: 25px;
+}
+
+@media screen and (max-width: 768px) {
+  .sidebar {
+    margin-top: 70px;
+  }
+  .sidebar {
+    grid-area: 1;
+  }
+}

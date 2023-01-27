@@ -1,0 +1,5 @@
+.single__post {
+  display: grid;
+  grid-template-columns: 4fr 2fr;
+  margin-bottom: 80px;
+}

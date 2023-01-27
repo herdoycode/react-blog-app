@@ -1,0 +1,15 @@
+.blogs {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 6fr 3fr;
+  margin: 40px 0px;
+}
+
+@media screen and (max-width: 768px) {
+  .blogs {
+    display: grid;
+    grid-template-rows: 1fr auto;
+    grid-template-columns: 1fr;
+    margin: 40px 0px;
+  }
+}
