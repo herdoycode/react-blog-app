@@ -6,8 +6,12 @@ const Blogs = ({ posts }) => {
   return (
     <div className="container">
       <div className="blogs">
-        <Posts posts={posts} />
-        <Sidebar />
+        <div>
+          <Posts posts={posts} />
+        </div>
+        <div>
+          <Sidebar posts={posts} />
+        </div>
       </div>
     </div>
   );

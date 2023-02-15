@@ -6,7 +6,9 @@ const Navbar = () => {
     <>
       <div className="nav__wrapper">
         <div className="container nav">
-          <div className="nav__brand">Blog</div>
+          <NavLink to="/" className="nav__brand">
+            Blog
+          </NavLink>
           <ul className="nav__menu">
             <li className="nav__item">
               <NavLink to="/" className="nav__link">
@@ -23,9 +25,9 @@ const Navbar = () => {
                 Signup
               </NavLink>
             </li>
-            <li className="nav__item get__quote">
-              <NavLink to="/" className="nav__link">
-                {">"} Get A Quote
+            <li className="nav__item">
+              <NavLink to="/control" className="nav__link">
+                Dashboard
               </NavLink>
             </li>
           </ul>

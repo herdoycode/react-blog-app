@@ -12,13 +12,14 @@
 }
 .recent__posts img {
   border-radius: 10px;
-  height: 100px;
-  width: auto;
+  width: 120px;
+  height: 80px;
+  object-fit: cover;
 }
 .recent__post__content {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 5px;
 }
 .recent__post__content p {
   color: var(--color-dark);

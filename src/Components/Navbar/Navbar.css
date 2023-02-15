@@ -10,13 +10,15 @@
 .nav {
   height: 80px;
   display: flex;
-  align-items: center;
+  align-items: center !important;
   justify-content: space-between;
+  padding: 0;
 }
 .nav__menu {
   display: flex;
   align-items: center;
   gap: 30px;
+  margin: 0 !important;
 }
 .nav__brand {
   font-weight: 700;
@@ -29,23 +31,6 @@
   transition: 0.5s ease;
 }
 
-.get__quote {
-  padding: 15px 20px;
-  background: linear-gradient(-90deg, var(--primary-alt), var(--color-primary));
-  border-radius: 0px 25px 0px 25px;
-}
-.get__quote:hover {
-  border-radius: 25px 0px 25px 0px;
-  color: #fff;
-  transition: 0.3s ease;
-}
-
 .fix-height {
   height: 80px;
-}
-
-@media screen and (max-width: 768px) {
-  .get__quote {
-    display: none;
-  }
 }

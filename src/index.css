@@ -27,6 +27,9 @@ a {
 img {
   max-width: 100%;
 }
+h3 {
+  font-size: 20px;
+}
 
 .container,
 .container-fluid,
@@ -84,7 +87,7 @@ img {
 }
 
 .btn {
-  padding: 15px 20px;
+  padding: 10px 15px;
   border: none;
   outline: none;
   border-radius: 25px;
@@ -95,4 +98,8 @@ img {
 .btn__primary {
   color: #fff;
   background: var(--color-primary);
+}
+.btn:hover {
+  background: var(--primary-alt) !important;
+  color: #fff !important;
 }

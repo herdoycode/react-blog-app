@@ -1,50 +1,41 @@
+import config from "../../config.json";
+import moment from "moment";
 import "./RecentPosts.css";
 import SidebarTitle from "../SidebarTitle/SidebarTitle";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 const RecentPosts = () => {
+  const navigate = useNavigate();
+
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      const { data } = await axios.get(config.dbUrl + "posts");
+      setPosts(data.slice(0, 4));
+    };
+    fetchPosts();
+  }, []);
+
   return (
     <div>
       <SidebarTitle title={"Recent Posts"} />
-      <div className="recent__posts">
-        <img
-          src="https://samartheme1.vercel.app/images/blog/recent-blog/pic1.jpg"
-          alt=""
-        />
-        <div className="recent__post__content">
-          <p>Fusce mollis felis quis tristique</p>
-          <span>7 March, 2020 </span>
+
+      {posts?.map((post) => (
+        <div
+          onClick={() => navigate(`/post/${post?._id}`)}
+          key={post?._id}
+          className="recent__posts"
+        >
+          <img src={post?.thumbnail} alt="" />
+          <div className="recent__post__content">
+            <p> {post?.title} </p>
+            <span> {moment(post?.createdAt).format("ll")} </span>
+          </div>
         </div>
-      </div>
-      <div className="recent__posts">
-        <img
-          src="https://samartheme1.vercel.app/images/blog/recent-blog/pic1.jpg"
-          alt=""
-        />
-        <div className="recent__post__content">
-          <p>Fusce mollis felis quis tristique</p>
-          <span>7 March, 2020 </span>
-        </div>
-      </div>
-      <div className="recent__posts">
-        <img
-          src="https://samartheme1.vercel.app/images/blog/recent-blog/pic1.jpg"
-          alt=""
-        />
-        <div className="recent__post__content">
-          <p>Fusce mollis felis quis tristique</p>
-          <span>7 March, 2020 </span>
-        </div>
-      </div>
-      <div className="recent__posts">
-        <img
-          src="https://samartheme1.vercel.app/images/blog/recent-blog/pic1.jpg"
-          alt=""
-        />
-        <div className="recent__post__content">
-          <p>Fusce mollis felis quis tristique</p>
-          <span>7 March, 2020 </span>
-        </div>
-      </div>
+      ))}
     </div>
   );
 };

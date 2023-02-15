@@ -1,7 +1,7 @@
 .posts {
   display: grid;
-  grid-template-columns: 400px 400px;
-  grid-template-rows: 430px;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
   gap: 20px;
 }
 .post {
@@ -9,6 +9,9 @@
   border-radius: 10px;
   overflow: hidden;
   margin-bottom: 20px;
+}
+.postb {
+  background: red;
 }
 .post__img {
   overflow: hidden;
