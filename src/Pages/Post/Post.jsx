@@ -26,17 +26,15 @@ const Post = () => {
 
   useEffect(() => {
     const fetchComments = async () => {
-      const { data } = await axios.get(`${config.dbUrl}comments/${id}`);
+      const { data } = await axios.get(`${config.dbUrl}/comments/${id}`);
       setComments(data);
     };
     fetchComments();
   }, [id]);
 
-  console.log(comments);
-
   useEffect(() => {
     const fetchPosts = async () => {
-      const { data } = await axios.get(`${config.dbUrl}posts/${id}`);
+      const { data } = await axios.get(`${config.dbUrl}/posts/${id}`);
       setPost(data);
     };
     fetchPosts();

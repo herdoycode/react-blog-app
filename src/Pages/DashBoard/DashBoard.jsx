@@ -13,7 +13,7 @@ const DashBoard = () => {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const { data } = await axios.get(config.dbUrl + "posts");
+      const { data } = await axios.get(config.dbUrl + "/" + "posts");
       setPosts(data.slice(0, 6));
     };
     fetchPosts();
@@ -67,7 +67,7 @@ const DashBoard = () => {
               </thead>
               <tbody>
                 {posts.map((post) => (
-                  <tr>
+                  <tr key={post._id}>
                     <td> {post.title} </td>
                     <td> {post.category.name} </td>
                     <td>

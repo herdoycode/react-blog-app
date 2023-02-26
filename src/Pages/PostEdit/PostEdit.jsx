@@ -1,59 +1,65 @@
-import config from "../../config.json";
 import "./PostEdit.css";
 import React, { useEffect, useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import Navbar from "../../Components/Navbar/Navbar";
 import { useNavigate, useParams } from "react-router-dom";
-import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { loadCategorys } from "../../store/categorys";
+import { addPost, loadPosts, updatePost } from "../../store/posts";
 
 const PostEdit = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
   const [value, setValue] = useState("");
   const [title, setTitle] = useState("");
   const [thumbnail, setThumbnail] = useState("");
   const [category, setCategory] = useState("");
-  const [categorys, setCategorys] = useState([]);
+  const categorys = useSelector((state) => state.entities.categorys.list);
+  const posts = useSelector((state) => state.entities.posts.list);
+
+  useEffect(() => {
+    dispatch(loadCategorys());
+    dispatch(loadPosts());
+  }, [id]);
 
   useEffect(() => {
     if (id === "new") return;
-    const fetchPost = async () => {
-      const { data } = await axios.get(`${config.dbUrl}posts/${id}`);
-      setTitle(data.title);
-      setValue(data.content);
-      setThumbnail(data.thumbnail);
-      setCategory(data.category._id);
-    };
-    fetchPost();
-  }, []);
 
-  useEffect(() => {
-    const fetchCategorys = async () => {
-      const { data } = await axios.get(config.dbUrl + "categorys");
-      setCategorys(data);
-    };
-    fetchCategorys();
-  }, [id]);
+    try {
+      const post = posts.find((p) => p._id === id);
+      setTitle(post?.title);
+      setValue(post?.content);
+      setThumbnail(post?.thumbnail);
+      setCategory(post?.category?._id);
+    } catch (error) {
+      console.log(error);
+    }
+  }, [posts]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     try {
       if (id === "new") {
-        axios.post(config.dbUrl + "posts", {
-          title: title,
-          content: value,
-          authorId: "63e10752bfea5e20a83eb50e",
-          thumbnail: thumbnail,
-          categoryId: category,
-        });
+        dispatch(
+          addPost({
+            title: title,
+            content: value,
+            authorId: "63fb78b1299064dc8d19adcc",
+            thumbnail: thumbnail,
+            categoryId: category,
+          })
+        );
       } else {
-        axios.put(config.dbUrl + "posts/" + id, {
-          title,
-          thumbnail,
-          content: value,
-          categoryId: category,
-        });
+        dispatch(
+          updatePost(id, {
+            title,
+            thumbnail,
+            content: value,
+            categoryId: category,
+          })
+        );
       }
       navigate("/control");
     } catch (error) {

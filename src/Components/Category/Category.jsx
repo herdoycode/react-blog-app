@@ -8,7 +8,7 @@ const Category = () => {
   const [categorys, setCategorys] = useState([]);
   useEffect(() => {
     const fetchCategorys = async () => {
-      const { data } = await axios.get(config.dbUrl + "categorys");
+      const { data } = await axios.get(config.dbUrl + "/" + "categorys");
       setCategorys(data);
     };
     fetchCategorys();
