@@ -1,7 +1,10 @@
 import "./Navbar.css";
 import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
+  const user = useSelector((state) => state.entities.users.user);
+
   return (
     <>
       <div className="nav__wrapper">
@@ -15,21 +18,35 @@ const Navbar = () => {
                 Home
               </NavLink>
             </li>
-            <li className="nav__item">
-              <NavLink to="/login" className="nav__link">
-                Login
-              </NavLink>
-            </li>
-            <li className="nav__item">
-              <NavLink to="/signup" className="nav__link">
-                Signup
-              </NavLink>
-            </li>
-            <li className="nav__item">
-              <NavLink to="/control" className="nav__link">
-                Dashboard
-              </NavLink>
-            </li>
+            {!user && (
+              <>
+                <li className="nav__item">
+                  <NavLink to="/login" className="nav__link">
+                    Login
+                  </NavLink>
+                </li>
+                <li className="nav__item">
+                  <NavLink to="/signup" className="nav__link">
+                    Signup
+                  </NavLink>
+                </li>
+              </>
+            )}
+
+            {user && (
+              <>
+                <li className="nav__item">
+                  <NavLink to="/control" className="nav__link">
+                    Dashboard
+                  </NavLink>
+                </li>
+                <li className="nav__item">
+                  <NavLink to="/logout" className="nav__link">
+                    Logout
+                  </NavLink>
+                </li>
+              </>
+            )}
           </ul>
         </div>
       </div>

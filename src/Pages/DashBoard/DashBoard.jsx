@@ -6,9 +6,13 @@ import "./DashBoard.css";
 import Pagination from "../../Components/Pagination/Pagination";
 import ModeEditOutlinedIcon from "@mui/icons-material/ModeEditOutlined";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const DashBoard = () => {
+  const user = useSelector((state) => state.entities.users.user);
+
   const navigate = useNavigate();
+
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
@@ -25,10 +29,10 @@ const DashBoard = () => {
         <div className="dashboard">
           <div className="db__left">
             <div className="profile">
-              <img src="/img/herdoy.jpg" alt="" />
+              <img src={user?.avatar} alt="" />
               <div className="profile__content">
-                <h2>Herdoy Almamun</h2>
-                <h4>herdoy1@gmail.com</h4>
+                <h3>{user?.name}</h3>
+                <h5> {user?.email} </h5>
               </div>
               <div className="profile__edit">
                 <ModeEditOutlinedIcon color="inherit" />

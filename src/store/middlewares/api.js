@@ -8,7 +8,8 @@ const api =
   async (action) => {
     if (action.type !== actions.apiCallBegan.type) return next(action);
 
-    const { url, method, data, onStart, onSuccess, onError } = action.payload;
+    const { url, method, data, onStart, onSuccess, onError, getHeaders } =
+      action.payload;
 
     if (onStart) dispatch({ type: onStart });
 
@@ -25,6 +26,8 @@ const api =
       dispatch(actions.apiCallSuccess(response.data));
       // Specific
       if (onSuccess) dispatch({ type: onSuccess, payload: response.data });
+      // Specific
+      if (getHeaders) dispatch({ type: getHeaders, payload: response.headers });
     } catch (error) {
       // General
       dispatch(actions.apiCallFailed(error.message));

@@ -1,15 +1,52 @@
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { authLogin } from "../../store/auth";
 import "./Login.css";
 
 const Login = () => {
+  const user = useSelector((state) => state.entities.users.user);
   const navigate = useNavigate();
+  const dispacth = useDispatch();
+  useEffect(() => {
+    if (user) return navigate("/");
+  }, []);
+
+  const [account, setAccount] = useState({
+    email: "",
+    password: "",
+  });
+  const handleChange = (e) => {
+    const accountClone = { ...account };
+    accountClone[e.target.name] = e.target.value;
+    setAccount(accountClone);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispacth(authLogin(account));
+    setTimeout(() => (window.location = "/"), 1000);
+  };
+
   return (
     <div className="login">
       <div className="login__box">
         <h2>Login</h2>
-        <input type="text" placeholder="Enter your email..." />
-        <input type="text" placeholder="Enter your password..." />
-        <button> Login </button>
+        <input
+          type="text"
+          name="email"
+          value={account.email}
+          onChange={handleChange}
+          placeholder="Email Address..."
+        />
+        <input
+          type="text"
+          name="password"
+          value={account.password}
+          onChange={handleChange}
+          placeholder="Password..."
+        />
+        <button onClick={handleSubmit}> Login </button>
         <button onClick={() => navigate("/signup")} className="btn__login">
           Create Account
         </button>

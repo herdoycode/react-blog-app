@@ -18,6 +18,7 @@ const PostEdit = () => {
   const [category, setCategory] = useState("");
   const categorys = useSelector((state) => state.entities.categorys.list);
   const posts = useSelector((state) => state.entities.posts.list);
+  const user = useSelector((state) => state.entities.users.user);
 
   useEffect(() => {
     dispatch(loadCategorys());
@@ -46,7 +47,7 @@ const PostEdit = () => {
           addPost({
             title: title,
             content: value,
-            authorId: "63fb78b1299064dc8d19adcc",
+            authorId: user._id,
             thumbnail: thumbnail,
             categoryId: category,
           })
