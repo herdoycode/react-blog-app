@@ -7,6 +7,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loadCategorys } from "../../store/categorys";
 import { addPost, loadPosts, updatePost } from "../../store/posts";
+import { toast } from "react-toastify";
 
 const PostEdit = () => {
   const dispatch = useDispatch();
@@ -19,6 +20,8 @@ const PostEdit = () => {
   const categorys = useSelector((state) => state.entities.categorys.list);
   const posts = useSelector((state) => state.entities.posts.list);
   const user = useSelector((state) => state.entities.users.user);
+
+  const [errors, setErrors] = useState({});
 
   useEffect(() => {
     dispatch(loadCategorys());
@@ -39,8 +42,17 @@ const PostEdit = () => {
     }
   }, [posts]);
 
+  const validate = () => {
+    return { title: "title is Required" };
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const errors = validate();
+    setErrors(errors);
+    if (errors) return;
+
     try {
       if (id === "new") {
         dispatch(

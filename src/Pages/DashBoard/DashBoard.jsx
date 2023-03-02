@@ -22,6 +22,11 @@ const DashBoard = () => {
     };
     fetchPosts();
   }, []);
+
+  useEffect(() => {
+    if (!localStorage.getItem("token")) return navigate("/login");
+  }, [user]);
+
   return (
     <>
       <Navbar />

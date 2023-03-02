@@ -1,6 +1,6 @@
 import "./Signup.css";
-import { useDispatch } from "react-redux";
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { userRegistered } from "../../store/users";
 
@@ -21,8 +21,13 @@ const Signup = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispacth(userRegistered(account));
-    setTimeout(() => (window.location = "/"), 1000);
   };
+
+  const token = useSelector((state) => state.auth.jwt);
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) return (window.location = "/");
+  }, [handleSubmit, token]);
 
   return (
     <div className="signup">

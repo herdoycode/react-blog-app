@@ -6,6 +6,7 @@ import "./Login.css";
 
 const Login = () => {
   const user = useSelector((state) => state.entities.users.user);
+
   const navigate = useNavigate();
   const dispacth = useDispatch();
   useEffect(() => {
@@ -25,33 +26,40 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispacth(authLogin(account));
-    setTimeout(() => (window.location = "/"), 1000);
   };
 
+  const token = useSelector((state) => state.auth.jwt);
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) return (window.location = "/");
+  }, [handleSubmit, token]);
+
   return (
-    <div className="login">
-      <div className="login__box">
-        <h2>Login</h2>
-        <input
-          type="text"
-          name="email"
-          value={account.email}
-          onChange={handleChange}
-          placeholder="Email Address..."
-        />
-        <input
-          type="text"
-          name="password"
-          value={account.password}
-          onChange={handleChange}
-          placeholder="Password..."
-        />
-        <button onClick={handleSubmit}> Login </button>
-        <button onClick={() => navigate("/signup")} className="btn__login">
-          Create Account
-        </button>
+    <>
+      <div className="login">
+        <div className="login__box">
+          <h2>Login</h2>
+          <input
+            type="text"
+            name="email"
+            value={account.email}
+            onChange={handleChange}
+            placeholder="Email Address..."
+          />
+          <input
+            type="password"
+            name="password"
+            value={account.password}
+            onChange={handleChange}
+            placeholder="Password..."
+          />
+          <button onClick={handleSubmit}> Login </button>
+          <button onClick={() => navigate("/signup")} className="btn__login">
+            Create Account
+          </button>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

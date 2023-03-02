@@ -30,7 +30,7 @@ const api =
       if (getHeaders) dispatch({ type: getHeaders, payload: response.headers });
     } catch (error) {
       // General
-      dispatch(actions.apiCallFailed(error.message));
+      dispatch(actions.apiCallFailed(error.response.data));
       // Specific
       if (onError) dispatch({ type: onError, payload: error.message });
     }

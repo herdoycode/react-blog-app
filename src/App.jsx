@@ -10,6 +10,7 @@ import Signup from "./Pages/Signup/Signup";
 import { useDispatch } from "react-redux";
 import { fetchUser } from "./store/users";
 import Logout from "./Pages/logout/Logout";
+import { ToastContainer } from "react-toastify";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -32,6 +33,7 @@ const App = () => {
         <Route path="/signup" element={<Signup />} />
         <Route path="/control" element={<DashBoard />} />
       </Routes>
+      <ToastContainer />
     </>
   );
 };

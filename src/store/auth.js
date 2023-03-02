@@ -3,12 +3,15 @@ import { apiCallBegan } from "./api";
 
 const slice = createSlice({
   name: "auth",
-  initialState: [],
+  initialState: {
+    jwt: "",
+  },
   reducers: {
     loginRequested: (auth, action) => {
       auth.loading = true;
     },
     login: (auth, action) => {
+      auth.jwt = action.payload;
       localStorage.setItem("token", action.payload);
     },
   },

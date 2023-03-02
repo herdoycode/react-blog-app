@@ -57,8 +57,10 @@ export const addPost = (post) =>
   apiCallBegan({
     url,
     method: "post",
+    onStart: postRequested.type,
     data: post,
     onSuccess: postAdded.type,
+    onError: postRequestFailed.type,
   });
 
 export const updatePost = (postId, data) =>
