@@ -1,31 +1,30 @@
-import config from "../../config.json";
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Navbar from "../../Components/Navbar/Navbar";
 import "./DashBoard.css";
 import Pagination from "../../Components/Pagination/Pagination";
 import ModeEditOutlinedIcon from "@mui/icons-material/ModeEditOutlined";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { deletePost, loadPosts } from "../../store/posts";
 
 const DashBoard = () => {
-  const user = useSelector((state) => state.entities.users.user);
-
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [posts, setPosts] = useState([]);
+  const user = useSelector((state) => state.entities.users.user);
 
   useEffect(() => {
-    const fetchPosts = async () => {
-      const { data } = await axios.get(config.dbUrl + "/" + "posts");
-      setPosts(data.slice(0, 6));
-    };
-    fetchPosts();
+    dispatch(loadPosts());
   }, []);
 
+  const posts = useSelector((state) => state.entities.posts.list);
+
   useEffect(() => {
-    if (!localStorage.getItem("token")) return navigate("/login");
+    const token = localStorage.getItem("token");
+    if (!token) return navigate("/login");
   }, [user]);
+
+  const handleDelete = (post) => dispatch(deletePost(post._id));
 
   return (
     <>
@@ -88,7 +87,12 @@ const DashBoard = () => {
                       </button>
                     </td>
                     <td>
-                      <button className="btn btn-danger">Delete</button>
+                      <button
+                        onClick={() => handleDelete(post)}
+                        className="btn btn-danger"
+                      >
+                        Delete
+                      </button>
                     </td>
                   </tr>
                 ))}

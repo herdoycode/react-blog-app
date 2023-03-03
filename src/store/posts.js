@@ -4,6 +4,7 @@ import { apiCallBegan } from "./api";
 const slice = createSlice({
   name: "posts",
   initialState: {
+    result: null,
     list: [],
     loading: false,
   },
@@ -19,16 +20,19 @@ const slice = createSlice({
       posts.loading = false;
     },
     postAdded: (posts, action) => {
+      posts.result = action.payload;
       posts.list.push(action.payload);
     },
     postUpdated: (posts, action) => {
       const { postId, data } = action.payload;
       const index = posts.list.findIndex((post) => post._id === postId);
-      posts.list[index].title = data.title;
-      posts.list[index].content = data.content;
-      posts.list[index].thumbnail = data.thumbnail;
-      posts.list[index].authorId = data.authorId;
-      posts.list[index].catetoryId = data.catetoryId;
+      posts.result = action.payload;
+      posts.list[index] = data;
+    },
+    postDeleted: (posts, action) => {
+      const { id } = action.payload;
+      const index = posts.list.findIndex((post) => post._id === id);
+      posts.list.splice(index, 1);
     },
   },
 });
@@ -41,6 +45,7 @@ const {
   postRequested,
   postAdded,
   postUpdated,
+  postDeleted,
 } = slice.actions;
 
 const url = "/posts";
@@ -69,4 +74,11 @@ export const updatePost = (postId, data) =>
     method: "put",
     data,
     onSuccess: postUpdated.type,
+  });
+
+export const deletePost = (id) =>
+  apiCallBegan({
+    url: url + "/" + id,
+    method: "delete",
+    onSuccess: postDeleted.type,
   });

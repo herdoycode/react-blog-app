@@ -3,15 +3,13 @@ import React, { useEffect, useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import Navbar from "../../Components/Navbar/Navbar";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loadCategorys } from "../../store/categorys";
 import { addPost, loadPosts, updatePost } from "../../store/posts";
-import { toast } from "react-toastify";
 
 const PostEdit = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const { id } = useParams();
   const [value, setValue] = useState("");
   const [title, setTitle] = useState("");
@@ -20,8 +18,6 @@ const PostEdit = () => {
   const categorys = useSelector((state) => state.entities.categorys.list);
   const posts = useSelector((state) => state.entities.posts.list);
   const user = useSelector((state) => state.entities.users.user);
-
-  const [errors, setErrors] = useState({});
 
   useEffect(() => {
     dispatch(loadCategorys());
@@ -42,43 +38,36 @@ const PostEdit = () => {
     }
   }, [posts]);
 
-  const validate = () => {
-    return { title: "title is Required" };
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const errors = validate();
-    setErrors(errors);
-    if (errors) return;
-
-    try {
-      if (id === "new") {
-        dispatch(
-          addPost({
-            title: title,
-            content: value,
-            authorId: user._id,
-            thumbnail: thumbnail,
-            categoryId: category,
-          })
-        );
-      } else {
-        dispatch(
-          updatePost(id, {
-            title,
-            thumbnail,
-            content: value,
-            categoryId: category,
-          })
-        );
-      }
-      navigate("/control");
-    } catch (error) {
-      console.log(error);
+    if (id === "new") {
+      dispatch(
+        addPost({
+          title: title,
+          content: value,
+          authorId: user._id,
+          thumbnail: thumbnail,
+          categoryId: category,
+        })
+      );
+    } else {
+      dispatch(
+        updatePost(id, {
+          title,
+          thumbnail,
+          content: value,
+          categoryId: category,
+        })
+      );
     }
   };
+
+  const result = useSelector((state) => state.entities.posts.result);
+
+  useEffect(() => {
+    if (result) window.location = "/control";
+  }, [handleSubmit, result]);
 
   return (
     <>
