@@ -6,37 +6,46 @@ import Navbar from "../../Components/Navbar/Navbar";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loadCategorys } from "../../store/categorys";
-import { addPost, loadPosts, updatePost } from "../../store/posts";
+import { addPost, getPost, loadPosts, updatePost } from "../../store/posts";
 
 const PostEdit = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
+  const [data, setData] = useState({
+    title: "",
+    categoryId: "",
+    thumbnail: "",
+  });
   const [value, setValue] = useState("");
-  const [title, setTitle] = useState("");
-  const [thumbnail, setThumbnail] = useState("");
-  const [category, setCategory] = useState("");
   const categorys = useSelector((state) => state.entities.categorys.list);
   const posts = useSelector((state) => state.entities.posts.list);
   const user = useSelector((state) => state.entities.users.user);
 
   useEffect(() => {
+    if (id !== "new") dispatch(getPost(id));
     dispatch(loadCategorys());
     dispatch(loadPosts());
   }, [id]);
+
+  const post = useSelector((state) => state.entities.posts.post);
 
   useEffect(() => {
     if (id === "new") return;
 
     try {
-      const post = posts.find((p) => p._id === id);
-      setTitle(post?.title);
-      setValue(post?.content);
-      setThumbnail(post?.thumbnail);
-      setCategory(post?.category?._id);
+      const { title, content, thumbnail, category } = post;
+      setData({ title, thumbnail, categoryId: category?._id });
+      setValue(content);
     } catch (error) {
       console.log(error);
     }
   }, [posts]);
+
+  const handleChange = ({ target: input }) => {
+    const dataClone = { ...data };
+    dataClone[input.name] = input.value;
+    setData(dataClone);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -44,20 +53,20 @@ const PostEdit = () => {
     if (id === "new") {
       dispatch(
         addPost({
-          title: title,
+          title: data.title,
+          thumbnail: data.thumbnail,
           content: value,
+          categoryId: data.categoryId,
           authorId: user._id,
-          thumbnail: thumbnail,
-          categoryId: category,
         })
       );
     } else {
       dispatch(
         updatePost(id, {
-          title,
-          thumbnail,
+          title: data.title,
+          thumbnail: data.thumbnail,
           content: value,
-          categoryId: category,
+          categoryId: data.categoryId,
         })
       );
     }
@@ -75,15 +84,17 @@ const PostEdit = () => {
       <div className="container">
         <div className="post__edit">
           <input
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            value={data.title}
             type="text"
+            name="title"
+            onChange={handleChange}
             placeholder="Title..."
           />
           <select
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
+            value={data.categoryId}
+            name="categoryId"
             className="category__select"
+            onChange={handleChange}
           >
             <option value="" disabled>
               Select...
@@ -96,15 +107,15 @@ const PostEdit = () => {
           </select>
           <ReactQuill
             className="react__quil"
-            theme="snow"
             placeholder="Write Your Content..."
             value={value}
             onChange={setValue}
           />
           <input
-            onChange={(e) => setThumbnail(e.target.value)}
-            value={thumbnail}
+            value={data.thumbnail}
+            name="thumbnail"
             type="text"
+            onChange={handleChange}
             placeholder="Thumbnail Url..."
           />
           <button onClick={handleSubmit} className="btn btn__primary w-100">

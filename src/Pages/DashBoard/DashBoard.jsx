@@ -5,26 +5,28 @@ import Pagination from "../../Components/Pagination/Pagination";
 import ModeEditOutlinedIcon from "@mui/icons-material/ModeEditOutlined";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { deletePost, loadPosts } from "../../store/posts";
+import { deletePost, filterFpost, loadPosts } from "../../store/posts";
+import { loadCategorys } from "../../store/categorys";
 
 const DashBoard = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const user = useSelector((state) => state.entities.users.user);
-
   useEffect(() => {
     dispatch(loadPosts());
+    dispatch(loadCategorys());
   }, []);
 
+  const user = useSelector((state) => state.entities.users.user);
   const posts = useSelector((state) => state.entities.posts.list);
+  const categorys = useSelector((state) => state.entities.categorys.list);
+
+  const handleDelete = (post) => dispatch(deletePost(post._id));
 
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) return navigate("/login");
   }, [user]);
-
-  const handleDelete = (post) => dispatch(deletePost(post._id));
 
   return (
     <>
@@ -49,10 +51,18 @@ const DashBoard = () => {
               <div className="filter">
                 <p>Filter by Category:</p>
                 <select name="" id="">
-                  <option value="">Environment</option>
-                  <option value="">Gaming</option>
-                  <option value="">Programing</option>
-                  <option value="">Sports</option>
+                  <option onClick={() => dispatch(filterFpost("all"))} value="">
+                    All posts
+                  </option>
+                  {categorys.map((c) => (
+                    <option
+                      onClick={() => dispatch(filterFpost(c.name))}
+                      key={c._id}
+                      value=""
+                    >
+                      {c.name}
+                    </option>
+                  ))}
                 </select>
               </div>
             </div>

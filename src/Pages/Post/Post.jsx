@@ -1,8 +1,6 @@
-import config from "../../config.json";
 import parse from "html-react-parser";
 import moment from "moment";
 import "./Post.css";
-import axios from "axios";
 import Navbar from "../../Components/Navbar/Navbar";
 import Tags from "../../Components/Tags/Tags";
 import Call from "../../Components/Call/Call";
@@ -14,41 +12,35 @@ import RecentPosts from "../../Components/RecentPosts/RecentPosts";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import PermIdentityIcon from "@mui/icons-material/PermIdentity";
+import { getPost } from "../../store/posts";
+import { useDispatch, useSelector } from "react-redux";
+import { addComment, loadComments } from "../../store/comments";
 
 const Post = () => {
+  const dispatch = useDispatch();
   const { id } = useParams();
   const navigate = useNavigate();
   const [comment, setComment] = useState("");
 
-  const [comments, setComments] = useState([]);
-
-  const [post, setPost] = useState({});
-
+  const user = useSelector((state) => state.entities.users.user);
+  console.log(user);
   useEffect(() => {
-    const fetchComments = async () => {
-      const { data } = await axios.get(`${config.dbUrl}/comments/${id}`);
-      setComments(data);
-    };
-    fetchComments();
+    dispatch(loadComments(id));
   }, [id]);
 
   useEffect(() => {
-    const fetchPosts = async () => {
-      const { data } = await axios.get(`${config.dbUrl}/posts/${id}`);
-      setPost(data);
-    };
-    fetchPosts();
+    dispatch(getPost(id));
   }, [id]);
 
-  const handleComment = async (e) => {
-    e.preventDefault();
-    await axios.post(`${config.dbUrl}comments`, {
-      postId: id,
-      userId: "63e10752bfea5e20a83eb50e",
-      text: comment,
-    });
-    window.location.reload();
+  const comments = useSelector((state) => state.entities.comments.list);
+  console.log(comments);
+
+  const handleComment = () => {
+    dispatch(addComment({ postId: id, userId: user._id, text: comment }));
+    setComment("");
   };
+
+  const post = useSelector((state) => state.entities.posts.post);
 
   return (
     <>
@@ -80,7 +72,7 @@ const Post = () => {
               </div>
               <h2> {post?.title} </h2>
               <hr />
-              <p className="mb-4"> {parse(`${post.content}`)}</p>
+              <div className="mb-4"> {parse(`${post.content}`)}</div>
               <hr />
               <div className="comments">
                 <h2 className="mb-5">Put your comment</h2>
@@ -95,18 +87,19 @@ const Post = () => {
                     Comment
                   </button>
                 </div>
-
-                {comments.map((c) => (
-                  <div key={c._id} className="comment">
-                    <div className="comment__avatar">
-                      <img src="https://i.ibb.co/M1kpGmK/me.jpg" alt="" />
+                <div className="commentsContainer">
+                  {comments.map((c) => (
+                    <div key={c._id} className="comment">
+                      <div className="comment__avatar">
+                        <img src={c?.user?.avatar} alt="" />
+                      </div>
+                      <div className="comment__info">
+                        <h5> {c?.user?.name} </h5>
+                        <p> {c?.text} </p>
+                      </div>
                     </div>
-                    <div className="comment__info">
-                      <h5> {c.user.name} </h5>
-                      <p> {c.text} </p>
-                    </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
             <div className="single__post__right">

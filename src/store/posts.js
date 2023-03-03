@@ -6,6 +6,8 @@ const slice = createSlice({
   initialState: {
     result: null,
     list: [],
+    filtered: [],
+    post: {},
     loading: false,
   },
   reducers: {
@@ -14,6 +16,7 @@ const slice = createSlice({
     },
     postRecived: (posts, action) => {
       posts.list = action.payload;
+      posts.filtered = action.payload;
       posts.loading = false;
     },
     postRequestFailed: (posts, action) => {
@@ -29,10 +32,31 @@ const slice = createSlice({
       posts.result = action.payload;
       posts.list[index] = data;
     },
+    postGeted: (posts, action) => {
+      posts.post = action.payload;
+    },
     postDeleted: (posts, action) => {
       const { id } = action.payload;
       const index = posts.list.findIndex((post) => post._id === id);
       posts.list.splice(index, 1);
+    },
+    postFiltered: (posts, action) => {
+      const { category } = action.payload;
+      switch (category) {
+        case "all":
+          posts.list = posts.filtered;
+          break;
+        default:
+          posts.list = posts.filtered.filter(
+            (p) => p.category.name === category
+          );
+      }
+    },
+    postSearched: (posts, action) => {
+      const { title } = action.payload;
+      posts.list = posts.filtered.filter((p) =>
+        p.title.toLowerCase().startsWith(title.toLowerCase())
+      );
     },
   },
 });
@@ -45,7 +69,10 @@ const {
   postRequested,
   postAdded,
   postUpdated,
+  postGeted,
   postDeleted,
+  postFiltered,
+  postSearched,
 } = slice.actions;
 
 const url = "/posts";
@@ -82,3 +109,12 @@ export const deletePost = (id) =>
     method: "delete",
     onSuccess: postDeleted.type,
   });
+
+export const getPost = (id) =>
+  apiCallBegan({
+    url: url + "/" + id,
+    onSuccess: postGeted.type,
+  });
+
+export const filterFpost = (category) => postFiltered({ category });
+export const searchFpost = (title) => postSearched({ title });

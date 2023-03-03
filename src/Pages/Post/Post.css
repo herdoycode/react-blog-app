@@ -41,7 +41,6 @@
   padding: 10px;
 }
 .comment__avatar {
-  width: 100px !important;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -70,4 +69,11 @@
 .comment__box button {
   width: 120px;
   margin-top: 20px;
+}
+
+.commentsContainer{
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
 }
