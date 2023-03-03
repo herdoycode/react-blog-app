@@ -1,3 +1,4 @@
+import config from "../../src/config.json";
 import { createSlice } from "@reduxjs/toolkit";
 import { apiCallBegan } from "./api";
 
@@ -18,11 +19,10 @@ const slice = createSlice({
 });
 
 const { login } = slice.actions;
-const url = "/auth";
 
 export const authLogin = (data) =>
   apiCallBegan({
-    url,
+    url: config.auth,
     method: "post",
     data,
     onSuccess: login.type,

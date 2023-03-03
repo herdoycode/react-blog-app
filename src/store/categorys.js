@@ -1,3 +1,4 @@
+import config from "../../src/config.json";
 import { createSlice } from "@reduxjs/toolkit";
 import { apiCallBegan } from "./api";
 
@@ -29,11 +30,9 @@ const {
   categorysRequested,
 } = slice.actions;
 
-const url = "/categorys";
-
 export const loadCategorys = () =>
   apiCallBegan({
-    url,
+    url: config.categorys,
     onStart: categorysRequested.type,
     onSuccess: catetorysRecived.type,
     onError: postRequestFailed.type,

@@ -17,7 +17,7 @@ const api =
 
     try {
       const response = await axios.request({
-        baseURL: "http://localhost:9000/api",
+        baseURL: config.apiUrl,
         url,
         method,
         data,

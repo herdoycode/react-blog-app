@@ -1,3 +1,4 @@
+import config from "../../src/config.json";
 import { createSlice } from "@reduxjs/toolkit";
 import { apiCallBegan } from "./api";
 
@@ -33,7 +34,7 @@ const {
   commentAdded,
 } = slice.actions;
 
-const url = "/comments";
+const url = config.comments;
 
 export const loadComments = (postId) =>
   apiCallBegan({

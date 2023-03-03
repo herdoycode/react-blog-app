@@ -23,7 +23,6 @@ const Post = () => {
   const [comment, setComment] = useState("");
 
   const user = useSelector((state) => state.entities.users.user);
-  console.log(user);
   useEffect(() => {
     dispatch(loadComments(id));
   }, [id]);
@@ -33,11 +32,10 @@ const Post = () => {
   }, [id]);
 
   const comments = useSelector((state) => state.entities.comments.list);
-  console.log(comments);
 
   const handleComment = () => {
     dispatch(addComment({ postId: id, userId: user._id, text: comment }));
-    setComment("");
+    window.location.reload();
   };
 
   const post = useSelector((state) => state.entities.posts.post);

@@ -7,8 +7,11 @@ const Hero = () => {
         <div className="hero">
           <div className="hero__left">
             <div className="hero__content">
-              <h1>This is title</h1>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+              <h1>Create Your Blog</h1>
+              <p>
+                This is a blog application, You can read blogs and also post
+                your blog
+              </p>
               <button className="btn btn__primary">Open Now</button>
             </div>
           </div>

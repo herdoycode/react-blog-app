@@ -1,3 +1,4 @@
+import config from "../../src/config.json";
 import { createSlice } from "@reduxjs/toolkit";
 import { apiCallBegan } from "./api";
 
@@ -20,7 +21,7 @@ const slice = createSlice({
 });
 
 const { registered, getUser, setJwt } = slice.actions;
-const url = "/users";
+const url = config.users;
 
 export const userRegistered = (data) =>
   apiCallBegan({
