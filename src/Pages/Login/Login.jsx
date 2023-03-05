@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { authLogin } from "../../store/auth";
+import { toast } from "react-toastify";
 import "./Login.css";
 
 const Login = () => {
@@ -31,7 +32,10 @@ const Login = () => {
   const token = useSelector((state) => state.auth.jwt);
 
   useEffect(() => {
-    if (localStorage.getItem("token")) return (window.location = "/");
+    if (token) {
+      toast.success("Login Success :)");
+      setTimeout(() => (window.location = "/"), 1500);
+    }
   }, [handleSubmit, token]);
 
   return (

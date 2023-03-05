@@ -13,7 +13,7 @@ const RecentPosts = () => {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const { data } = await axios.get(config.dbUrl + "/" + "posts");
+      const { data } = await axios.get(config.apiUrl + "/" + "posts");
       setPosts(data.slice(0, 4));
     };
     fetchPosts();

@@ -2,8 +2,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 50px;
+  height: 40px;
   background: #ff9f9f;
   color: #fff;
   text-align: center;
+}
+.copyright p{
+  margin: 0;
+  padding: 0;
 }

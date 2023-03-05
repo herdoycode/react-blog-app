@@ -6,6 +6,8 @@ const api =
   ({ dispatch }) =>
   (next) =>
   async (action) => {
+    const token = localStorage.getItem("token");
+
     if (action.type !== actions.apiCallBegan.type) return next(action);
 
     const { url, method, data, onStart, onSuccess, onError, getHeaders } =
@@ -18,6 +20,7 @@ const api =
     try {
       const response = await axios.request({
         baseURL: config.apiUrl,
+        headers: { "x-auth-token": token },
         url,
         method,
         data,

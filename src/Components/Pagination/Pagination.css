@@ -23,4 +23,10 @@
   border-radius: 25px;
   padding: 0px 25px;
   width: auto !important;
+  border: none;
+  outline: none;
+}
+.fuck{
+  background: linear-gradient(90deg, var(--color-primary), var(--primary-alt));;
+  color: #fff;
 }

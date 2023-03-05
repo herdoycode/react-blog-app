@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { userRegistered } from "../../store/users";
+import { toast } from "react-toastify";
 
 const Signup = () => {
   const dispacth = useDispatch();
@@ -23,10 +24,13 @@ const Signup = () => {
     dispacth(userRegistered(account));
   };
 
-  const token = useSelector((state) => state.auth.jwt);
+  const token = useSelector((state) => state.entities.users.jwt);
 
   useEffect(() => {
-    if (localStorage.getItem("token")) return (window.location = "/");
+    if (token) {
+      toast.success("Account created :)");
+      setTimeout(() => (window.location = "/"), 1500);
+    }
   }, [handleSubmit, token]);
 
   return (

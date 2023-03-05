@@ -1,6 +1,8 @@
+import { useNavigate } from "react-router-dom";
 import "./Call.css";
 
 const Call = () => {
+  const navigate = useNavigate();
   return (
     <div className="call__wrapper">
       <div className="container">
@@ -9,9 +11,8 @@ const Call = () => {
             <button className="btn btn-primary">More About Us</button>
             <h2>You Want To Showcase Your Website In Top Join With Us</h2>
           </div>
-          <div className="call__right">
-            <button className="call__btn"> {">"} </button>{" "}
-            <a href="#">Join now</a>
+          <div onClick={() => navigate("/contact")} className="call__right">
+            <button className="call__btn"> {">"} </button> <a> Join now</a>
           </div>
         </div>
       </div>

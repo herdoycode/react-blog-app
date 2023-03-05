@@ -8,6 +8,7 @@ const slice = createSlice({
     list: [],
     filtered: [],
     post: {},
+    deleted: null,
     loading: false,
   },
   reducers: {
@@ -36,9 +37,11 @@ const slice = createSlice({
       posts.post = action.payload;
     },
     postDeleted: (posts, action) => {
+      posts.deleted = action.payload;
       const { id } = action.payload;
       const index = posts.list.findIndex((post) => post._id === id);
       posts.list.splice(index, 1);
+      setTimeout(() => (posts.deleted = null), 200);
     },
     postFiltered: (posts, action) => {
       const { category } = action.payload;

@@ -1,6 +1,8 @@
+import { useNavigate } from "react-router-dom";
 import "./Hero.css";
 
 const Hero = () => {
+  const navigate = useNavigate();
   return (
     <div className="hero__wrapper">
       <div className="container">
@@ -12,7 +14,12 @@ const Hero = () => {
                 This is a blog application, You can read blogs and also post
                 your blog
               </p>
-              <button className="btn btn__primary">Open Now</button>
+              <button
+                onClick={() => navigate("/signup")}
+                className="btn btn__primary"
+              >
+                Signup to Start
+              </button>
             </div>
           </div>
           <div className="hero__right">

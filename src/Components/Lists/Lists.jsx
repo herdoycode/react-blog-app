@@ -1,27 +1,23 @@
 import "./Lists.css";
+import { Link } from "react-router-dom";
 
 const Lists = () => {
   return (
     <ul className="lists">
       <li className="list__item">
-        <a href="#" className="list__link">
-          Home
-        </a>
+        <Link to="/contact" className="list__link">
+          Contact
+        </Link>
       </li>
       <li className="list__item">
-        <a href="#" className="list__link">
-          About us
-        </a>
+        <Link to="/login" className="list__link">
+          Login
+        </Link>
       </li>
       <li className="list__item">
-        <a href="#" className="list__link">
-          Services
-        </a>
-      </li>
-      <li className="list__item">
-        <a href="#" className="list__link">
-          Team
-        </a>
+        <Link to="/signup" className="list__link">
+          Signup
+        </Link>
       </li>
     </ul>
   );

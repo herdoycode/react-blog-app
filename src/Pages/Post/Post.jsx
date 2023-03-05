@@ -2,7 +2,6 @@ import parse from "html-react-parser";
 import moment from "moment";
 import "./Post.css";
 import Navbar from "../../Components/Navbar/Navbar";
-import Tags from "../../Components/Tags/Tags";
 import Call from "../../Components/Call/Call";
 import Footer from "../../Components/Footer/Footer";
 import Copyright from "../../Components/Copyright/Copyright";
@@ -35,7 +34,7 @@ const Post = () => {
 
   const handleComment = () => {
     dispatch(addComment({ postId: id, userId: user._id, text: comment }));
-    window.location.reload();
+    setTimeout(() => window.location.reload(), 500);
   };
 
   const post = useSelector((state) => state.entities.posts.post);
@@ -102,7 +101,6 @@ const Post = () => {
             </div>
             <div className="single__post__right">
               <RecentPosts />
-              <Tags />
             </div>
           </div>
         </div>

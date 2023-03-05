@@ -7,6 +7,7 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loadCategorys } from "../../store/categorys";
 import { addPost, getPost, loadPosts, updatePost } from "../../store/posts";
+import { toast } from "react-toastify";
 
 const PostEdit = () => {
   const dispatch = useDispatch();
@@ -75,8 +76,13 @@ const PostEdit = () => {
   const result = useSelector((state) => state.entities.posts.result);
 
   useEffect(() => {
-    if (result) window.location = "/control";
-  }, [handleSubmit, result]);
+    if (result) {
+      id === "new"
+        ? toast.success("Post Created.")
+        : toast.warning("Post updated!");
+      setTimeout(() => (window.location = "/control"), 1500);
+    }
+  }, [result]);
 
   return (
     <>

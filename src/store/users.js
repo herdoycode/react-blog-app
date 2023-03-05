@@ -6,6 +6,7 @@ const slice = createSlice({
   name: "users",
   initialState: {
     user: null,
+    jwt: null,
   },
   reducers: {
     registered: (users, action) => {
@@ -13,6 +14,7 @@ const slice = createSlice({
     },
     setJwt: (users, action) => {
       localStorage.setItem("token", action.payload["x-auth-token"]);
+      users.jwt = action.payload["x-auth-token"];
     },
     getUser: (users, action) => {
       users.user = action.payload;

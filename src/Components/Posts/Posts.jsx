@@ -1,18 +1,37 @@
 import moment from "moment";
-import parse from "html-react-parser";
 import "./Posts.css";
 import Pagination from "../Pagination/Pagination";
 import AccessAlarmsOutlinedIcon from "@mui/icons-material/AccessAlarmsOutlined";
 import Person2OutlinedIcon from "@mui/icons-material/Person2Outlined";
 import ModeCommentOutlinedIcon from "@mui/icons-material/ModeCommentOutlined";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const Posts = ({ posts }) => {
   const navigate = useNavigate();
+  const [pagesPerPage] = useState(6);
+  const [currentPage, setCurrentPage] = useState(1);
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  const nextPage = () => {
+    setCurrentPage(currentPage + 1);
+  };
+
+  const prevPage = () => {
+    setCurrentPage(currentPage - 1);
+  };
+
+  const indexOfLastPost = currentPage * pagesPerPage;
+  const indexOfFirstPost = indexOfLastPost - pagesPerPage;
+
+  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+
   return (
     <>
       <div className="posts">
-        {posts.map((post) => (
+        {currentPosts.map((post) => (
           <div key={post._id} className="post">
             <div className="post__img">
               <img src={post.thumbnail} alt="" />
@@ -42,7 +61,16 @@ const Posts = ({ posts }) => {
         ))}
       </div>
       <div className="pagination__container">
-        <Pagination />
+        {posts.length > pagesPerPage && (
+          <Pagination
+            count={posts.length}
+            paginate={paginate}
+            pagesPerPage={pagesPerPage}
+            currentPage={currentPage}
+            nextPage={nextPage}
+            prevPage={prevPage}
+          />
+        )}
       </div>
     </>
   );

@@ -11,6 +11,7 @@ import { useDispatch } from "react-redux";
 import { fetchUser } from "./store/users";
 import Logout from "./Pages/logout/Logout";
 import { ToastContainer } from "react-toastify";
+import Contact from "./Pages/Contact/Contact";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -32,6 +33,7 @@ const App = () => {
         <Route path="/logout" element={<Logout />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/control" element={<DashBoard />} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
       <ToastContainer />
     </>

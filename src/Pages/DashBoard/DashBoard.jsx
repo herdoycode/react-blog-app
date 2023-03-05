@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "../../Components/Navbar/Navbar";
 import "./DashBoard.css";
 import Pagination from "../../Components/Pagination/Pagination";
@@ -9,6 +9,12 @@ import { deletePost, filterFpost, loadPosts } from "../../store/posts";
 import { loadCategorys } from "../../store/categorys";
 
 const DashBoard = () => {
+  const [pagesPerPage] = useState(6);
+  const [currentPage, setCurrentPage] = useState(1);
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -21,7 +27,23 @@ const DashBoard = () => {
   const posts = useSelector((state) => state.entities.posts.list);
   const categorys = useSelector((state) => state.entities.categorys.list);
 
-  const handleDelete = (post) => dispatch(deletePost(post._id));
+  const handleDelete = (post) => {
+    dispatch(deletePost(post._id));
+  };
+
+  const indexOfLastPost = currentPage * pagesPerPage;
+  const indexOfFirstPost = indexOfLastPost - pagesPerPage;
+
+  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+
+  const nextPage = () => {
+    setCurrentPage(currentPage + 1);
+  };
+
+  const prevPage = () => {
+    if (currentPage === 0) return;
+    setCurrentPage(currentPage - 1);
+  };
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -84,7 +106,7 @@ const DashBoard = () => {
                 </tr>
               </thead>
               <tbody>
-                {posts.map((post) => (
+                {currentPosts.map((post) => (
                   <tr key={post._id}>
                     <td> {post.title} </td>
                     <td> {post.category.name} </td>
@@ -108,7 +130,16 @@ const DashBoard = () => {
                 ))}
               </tbody>
             </table>
-            <Pagination />
+            {posts.length > pagesPerPage && (
+              <Pagination
+                count={posts.length}
+                paginate={paginate}
+                pagesPerPage={pagesPerPage}
+                currentPage={currentPage}
+                nextPage={nextPage}
+                prevPage={prevPage}
+              />
+            )}
           </div>
         </div>
       </div>

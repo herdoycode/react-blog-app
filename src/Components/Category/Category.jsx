@@ -1,26 +1,33 @@
-import config from "../../config.json";
-import axios from "axios";
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { loadCategorys } from "../../store/categorys";
 import SidebarTitle from "../SidebarTitle/SidebarTitle";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import "./Category.css";
+import { filterFpost } from "../../store/posts";
 
 const Category = () => {
-  const [categorys, setCategorys] = useState([]);
+  const dispatch = useDispatch();
   useEffect(() => {
-    const fetchCategorys = async () => {
-      const { data } = await axios.get(config.dbUrl + "/" + "categorys");
-      setCategorys(data);
-    };
-    fetchCategorys();
+    dispatch(loadCategorys());
   }, []);
+  const categorys = useSelector((state) => state.entities.categorys.list);
 
   return (
     <div className="category">
       <SidebarTitle title={"Category"} />
       <div className="categorys">
         {categorys.map((c) => (
-          <div key={c._id} className="category__item">
-            <span> {c.name} </span> <span className="category__count">90</span>
+          <div
+            onClick={() => dispatch(filterFpost(c.name))}
+            key={c._id}
+            className="category__item"
+            style={{ cursor: "pointer" }}
+          >
+            <span>{c.name}</span>
+            <span className="category__count">
+              <CheckCircleIcon color="inherit" />
+            </span>
           </div>
         ))}
       </div>
