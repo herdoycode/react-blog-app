@@ -18,6 +18,11 @@ const Navbar = () => {
                 Home
               </NavLink>
             </li>
+            <li className="nav__item">
+              <NavLink to="/contact" className="nav__link">
+                Contact
+              </NavLink>
+            </li>
             {!user && (
               <>
                 <li className="nav__item">

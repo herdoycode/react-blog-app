@@ -12,6 +12,10 @@ import { fetchUser } from "./store/users";
 import Logout from "./Pages/logout/Logout";
 import { ToastContainer } from "react-toastify";
 import Contact from "./Pages/Contact/Contact";
+import { loadCategorys } from "./store/categorys";
+import { loadComments } from "./store/comments";
+import { loadPosts } from "./store/posts";
+import { loadmessagess } from "./store/messages";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -21,6 +25,13 @@ const App = () => {
       const id = jwtDecode(token)._id;
       dispatch(fetchUser(id));
     }
+  }, []);
+
+  useEffect(() => {
+    dispatch(loadCategorys());
+    dispatch(loadComments());
+    dispatch(loadPosts());
+    dispatch(loadmessagess());
   }, []);
 
   return (

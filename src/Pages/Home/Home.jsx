@@ -5,17 +5,10 @@ import Footer from "../../Components/Footer/Footer";
 import Copyright from "../../Components/Copyright/Copyright";
 import Call from "../../Components/Call/Call";
 import Blogs from "../../Components/Blogs/Blogs";
-import { useDispatch, useSelector } from "react-redux";
-import { loadPosts } from "../../store/posts";
-import { useEffect } from "react";
+import { useSelector } from "react-redux";
+
 const Home = () => {
-  const dispatch = useDispatch();
   const posts = useSelector((state) => state.entities.posts.list);
-
-  useEffect(() => {
-    dispatch(loadPosts());
-  }, []);
-
   return (
     <>
       <Navbar />

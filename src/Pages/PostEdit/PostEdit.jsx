@@ -5,8 +5,7 @@ import "react-quill/dist/quill.snow.css";
 import Navbar from "../../Components/Navbar/Navbar";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { loadCategorys } from "../../store/categorys";
-import { addPost, getPost, loadPosts, updatePost } from "../../store/posts";
+import { addPost, getPost, updatePost } from "../../store/posts";
 import { toast } from "react-toastify";
 
 const PostEdit = () => {
@@ -24,8 +23,6 @@ const PostEdit = () => {
 
   useEffect(() => {
     if (id !== "new") dispatch(getPost(id));
-    dispatch(loadCategorys());
-    dispatch(loadPosts());
   }, [id]);
 
   const post = useSelector((state) => state.entities.posts.post);

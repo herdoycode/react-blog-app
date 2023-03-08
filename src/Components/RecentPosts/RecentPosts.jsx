@@ -1,23 +1,15 @@
-import config from "../../config.json";
 import moment from "moment";
 import "./RecentPosts.css";
 import SidebarTitle from "../SidebarTitle/SidebarTitle";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 const RecentPosts = () => {
   const navigate = useNavigate();
 
-  const [posts, setPosts] = useState([]);
+  let posts = useSelector((state) => state.entities.posts.list);
 
-  useEffect(() => {
-    const fetchPosts = async () => {
-      const { data } = await axios.get(config.apiUrl + "/" + "posts");
-      setPosts(data.slice(0, 4));
-    };
-    fetchPosts();
-  }, []);
+  posts = posts.slice(0, 4);
 
   return (
     <div>

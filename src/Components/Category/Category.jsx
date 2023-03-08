@@ -1,6 +1,4 @@
-import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loadCategorys } from "../../store/categorys";
 import SidebarTitle from "../SidebarTitle/SidebarTitle";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import "./Category.css";
@@ -8,9 +6,6 @@ import { filterFpost } from "../../store/posts";
 
 const Category = () => {
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(loadCategorys());
-  }, []);
   const categorys = useSelector((state) => state.entities.categorys.list);
 
   return (

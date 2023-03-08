@@ -1,12 +1,16 @@
 import "./Contact.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "../../Components/Navbar/Navbar";
 import SendOutlinedIcon from "@mui/icons-material/SendOutlined";
 import Footer from "../../Components/Footer/Footer";
+import { useDispatch, useSelector } from "react-redux";
+import { addmessages } from "../../store/messages";
+import { toast } from "react-toastify";
 
 const Contact = () => {
+  const dispatch = useDispatch();
   const [message, setMessage] = useState({
-    name: "",
+    sender: "",
     email: "",
     message: "",
   });
@@ -18,7 +22,17 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    dispatch(addmessages(message));
   };
+
+  const result = useSelector((state) => state.entities.messages.result);
+
+  useEffect(() => {
+    if (result) {
+      toast.success("Successfully sent message");
+      setTimeout(() => (window.location = "/control"), 1500);
+    }
+  }, [result]);
 
   return (
     <>
@@ -28,8 +42,8 @@ const Contact = () => {
           <h2>Send Message</h2>
           <input
             type="text"
-            name="email"
-            value={message.name}
+            name="sender"
+            value={message.sender}
             onChange={handleChange}
             placeholder="Name..."
           />
