@@ -6,8 +6,9 @@ import Person2OutlinedIcon from "@mui/icons-material/Person2Outlined";
 import ModeCommentOutlinedIcon from "@mui/icons-material/ModeCommentOutlined";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import PostSkeleton from "../PostSkeleton/PostSkeleton";
 
-const Posts = ({ posts }) => {
+const Posts = ({ posts, loading }) => {
   const navigate = useNavigate();
   const [pagesPerPage] = useState(6);
   const [currentPage, setCurrentPage] = useState(1);
@@ -27,6 +28,8 @@ const Posts = ({ posts }) => {
   const indexOfFirstPost = indexOfLastPost - pagesPerPage;
 
   const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+
+  if (loading) return <PostSkeleton />;
 
   return (
     <>

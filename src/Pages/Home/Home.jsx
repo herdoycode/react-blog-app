@@ -8,12 +8,12 @@ import Blogs from "../../Components/Blogs/Blogs";
 import { useSelector } from "react-redux";
 
 const Home = () => {
-  const posts = useSelector((state) => state.entities.posts.list);
+  const { list, loading } = useSelector((state) => state.entities.posts);
   return (
     <>
       <Navbar />
       <Hero />
-      <Blogs posts={posts} />
+      <Blogs posts={list} loading={loading} />
       <Call />
       <Footer />
       <Copyright />

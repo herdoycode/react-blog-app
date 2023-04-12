@@ -4,9 +4,11 @@ import { useNavigate } from "react-router-dom";
 import { authLogin } from "../../store/auth";
 import { toast } from "react-toastify";
 import "./Login.css";
+import Loading from "../../Components/Loading/Loading";
 
 const Login = () => {
   const user = useSelector((state) => state.entities.users.user);
+  const loading = useSelector((state) => state.auth.loading);
 
   const navigate = useNavigate();
   const dispacth = useDispatch();
@@ -57,7 +59,9 @@ const Login = () => {
             onChange={handleChange}
             placeholder="Password..."
           />
-          <button onClick={handleSubmit}> Login </button>
+          <button onClick={handleSubmit}>
+            {loading ? <Loading /> : "Login"}
+          </button>
           <button onClick={() => navigate("/signup")} className="btn__login">
             Create Account
           </button>

@@ -24,9 +24,11 @@ const slice = createSlice({
     messagesAdded: (messages, action) => {
       messages.result = action.payload;
       messages.list.push(action.payload);
+      messages.loading = false;
     },
     messagesGeted: (messages, action) => {
       messages.messages = action.payload;
+      messages.loading = false;
     },
     messagesDeleted: (messages, action) => {
       messages.deleted = action.payload;
@@ -34,6 +36,7 @@ const slice = createSlice({
       const index = messages.list.findIndex((messages) => messages._id === id);
       messages.list.splice(index, 1);
       setTimeout(() => (messages.deleted = null), 200);
+      messages.loading = false;
     },
   },
 });
@@ -64,18 +67,24 @@ export const addmessages = (messages) =>
     url,
     method: "post",
     data: messages,
+    onStart: messagesRequested.type,
     onSuccess: messagesAdded.type,
+    onError: messagesRequestFailed,
   });
 
 export const deletemessages = (id) =>
   apiCallBegan({
     url: url + "/" + id,
     method: "delete",
+    onStart: messagesRequested.type,
     onSuccess: messagesDeleted.type,
+    onError: messagesRequestFailed.type,
   });
 
 export const getmessages = (id) =>
   apiCallBegan({
     url: url + "/" + id,
+    onStart: messagesRequested.type,
     onSuccess: messagesGeted.type,
+    onError: messagesRequestFailed.type,
   });

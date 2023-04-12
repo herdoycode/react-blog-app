@@ -27,7 +27,6 @@
 }
 .signup__box button {
   width: 100%;
-  padding: 15px 20px;
   outline: none;
   border-radius: 27px;
   border: none;
@@ -36,6 +35,10 @@
   background: linear-gradient(45deg, var(--color-primary), var(--primary-alt));
   color: #fff;
   cursor: pointer;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .signup__box button:hover {
   background: linear-gradient(45deg, var(--primary-alt), var(--color-primary));

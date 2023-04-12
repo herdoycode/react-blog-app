@@ -1,4 +1,4 @@
-import config from "../../src/config.json";
+import config from "../config";
 import { createSlice } from "@reduxjs/toolkit";
 import { apiCallBegan } from "./api";
 

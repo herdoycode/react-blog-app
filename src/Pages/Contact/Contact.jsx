@@ -6,6 +6,7 @@ import Footer from "../../Components/Footer/Footer";
 import { useDispatch, useSelector } from "react-redux";
 import { addmessages } from "../../store/messages";
 import { toast } from "react-toastify";
+import Loading from "../../Components/Loading/Loading";
 
 const Contact = () => {
   const dispatch = useDispatch();
@@ -26,11 +27,16 @@ const Contact = () => {
   };
 
   const result = useSelector((state) => state.entities.messages.result);
+  const loading = useSelector((state) => state.entities.messages.loading);
 
   useEffect(() => {
     if (result) {
       toast.success("Successfully sent message");
-      setTimeout(() => (window.location = "/control"), 1500);
+      setMessage({
+        sender: "",
+        email: "",
+        message: "",
+      });
     }
   }, [result]);
 
@@ -63,7 +69,13 @@ const Contact = () => {
             placeholder="Your Message..."
           />
           <button onClick={handleSubmit}>
-            Sent <SendOutlinedIcon />
+            {loading ? (
+              <Loading />
+            ) : (
+              <>
+                Sent <SendOutlinedIcon />
+              </>
+            )}
           </button>
         </div>
       </div>

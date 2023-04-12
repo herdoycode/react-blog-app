@@ -4,8 +4,10 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { userRegistered } from "../../store/users";
 import { toast } from "react-toastify";
+import Loading from "../../Components/Loading/Loading";
 
 const Signup = () => {
+  const loading = useSelector((state) => state.entities.users.loading);
   const dispacth = useDispatch();
   const [account, setAccount] = useState({
     name: "",
@@ -65,7 +67,9 @@ const Signup = () => {
           onChange={handleChange}
           placeholder="Avatar url..."
         />
-        <button onClick={handleSubmit}> Signup </button>
+        <button onClick={handleSubmit}>
+          {loading ? <Loading /> : "Signup"}
+        </button>
         <Link to="/login">Already have Account? Login</Link>
       </div>
     </div>

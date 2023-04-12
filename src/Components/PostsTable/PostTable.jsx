@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { deletePost } from "../../store/posts";
@@ -52,6 +53,7 @@ const PostTable = () => {
         <thead>
           <tr>
             <th>Title</th>
+            <th>Date</th>
             <th>Category</th>
             <th>Update</th>
             <th>Delete</th>
@@ -61,6 +63,7 @@ const PostTable = () => {
           {currentPosts.map((post) => (
             <tr key={post._id}>
               <td> {post.title} </td>
+              <td> {moment(post.createdAt).format("ll")} </td>
               <td> {post.category.name} </td>
               <td>
                 <button

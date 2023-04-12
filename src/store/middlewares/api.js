@@ -1,4 +1,4 @@
-import config from "../../../src/config.json";
+import config from "../../config.json";
 import axios from "axios";
 import * as actions from "../api";
 
