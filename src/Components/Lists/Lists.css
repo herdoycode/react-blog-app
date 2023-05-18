@@ -7,8 +7,9 @@
 }
 .list__link {
   color: #fff;
+  text-decoration: none;
 }
 .list__item:hover {
-  margin-left: 10px;
+  margin-left: 5px;
   transition: 0.3s ease-in-out;
 }

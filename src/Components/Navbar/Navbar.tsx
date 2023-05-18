@@ -38,11 +38,6 @@ const Navbar = () => {
                 Dashboard
               </NavLink>
             </li>
-            <li className="nav__item">
-              <NavLink to="/logout" className="nav__link">
-                Logout
-              </NavLink>
-            </li>
           </ul>
         </div>
       </div>
