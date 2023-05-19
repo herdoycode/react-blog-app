@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { useNavigate, useParams } from "react-router-dom";
@@ -9,6 +9,7 @@ import Loading from "./../../Components/Loading/Loading";
 import useCategorys from "./../../hooks/useCategorys";
 import "./PostEdit.css";
 import useEditPost from "../../hooks/useEditPost";
+import AuthContext from "../../auth/AuthContext";
 
 const PostEdit = () => {
   const { id } = useParams();
@@ -25,6 +26,8 @@ const PostEdit = () => {
   const [categoryId, setCategoryId] = useState<string>();
   const [error, setError] = useState<any>();
   const [loading, setLoading] = useState<boolean>(false);
+
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
     if (id === "new") return;
@@ -63,7 +66,7 @@ const PostEdit = () => {
                     thumbnail,
                     content: value,
                     categoryId,
-                    authorId: "64061c3b5ff2b59dad85eee8",
+                    authorId: user._id,
                   })
                 : editPost.mutate({
                     title,

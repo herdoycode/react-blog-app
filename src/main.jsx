@@ -5,13 +5,16 @@ import "bootstrap/dist/css/bootstrap.css";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { RouterProvider } from "react-router-dom";
 import routes from "./routes";
+import AuthProvider from "./auth/AuthProvider";
 
 const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <RouterProvider router={routes} />
+      <AuthProvider>
+        <RouterProvider router={routes} />
+      </AuthProvider>
     </QueryClientProvider>
   </React.StrictMode>
 );
