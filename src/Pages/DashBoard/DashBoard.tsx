@@ -31,8 +31,9 @@ const DashBoard = () => {
         <div className="dashboard">
           <div className="db__left">
             <ul className="list-group">
-              {actions.map((action) => (
+              {actions.map((action, index) => (
                 <li
+                  key={index}
                   style={{
                     cursor: "pointer",
                     background: "transparent",

@@ -5,8 +5,6 @@ import moment from "moment";
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Call from "../../Components/Call/Call";
-import Copyright from "../../Components/Copyright/Copyright";
-import Footer from "../../Components/Footer/Footer";
 import RecentPosts from "../../Components/RecentPosts/RecentPosts";
 import "./Post.css";
 import usePost from "../../hooks/usePost";
@@ -14,6 +12,7 @@ import Loading from "../../Components/Loading/Loading";
 
 const Post = () => {
   const { id } = useParams();
+
   const navigate = useNavigate();
   const { data, error, isLoading } = usePost(id!);
 

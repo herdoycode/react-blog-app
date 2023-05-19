@@ -1,7 +1,6 @@
 import React from "react";
 import "./Contact.css";
 import SendOutlinedIcon from "@mui/icons-material/SendOutlined";
-import Footer from "../../Components/Footer/Footer";
 
 const Contact = () => {
   return (

@@ -5,9 +5,11 @@ import Filter from "../Filter/Filter";
 import Pagination from "../Pagination/Pagination";
 import usePosts from "./../../hooks/usePosts";
 import Loading from "../Loading/Loading";
+import useDeletePost from "../../hooks/useDeletePost";
 
 const PostTable = () => {
   const navigate = useNavigate();
+  const deletePost = useDeletePost();
   const { data: posts, isLoading, error } = usePosts();
 
   const [pagesPerPage] = useState(7);
@@ -62,7 +64,7 @@ const PostTable = () => {
             <tr key={post._id}>
               <td> {post.title} </td>
               <td> {moment(post.createdAt).format("ll")} </td>
-              <td> {post.category.name} </td>
+              <td> {post.category?.name} </td>
               <td>
                 <button
                   onClick={() => navigate(`/post/${post._id}`)}
@@ -72,7 +74,12 @@ const PostTable = () => {
                 </button>
               </td>
               <td>
-                <button className="btn btn-danger btn-sm">Delete</button>
+                <button
+                  onClick={() => deletePost.mutate(post)}
+                  className="btn btn-danger btn-sm"
+                >
+                  Delete
+                </button>
               </td>
             </tr>
           ))}
