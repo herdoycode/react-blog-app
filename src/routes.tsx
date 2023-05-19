@@ -8,6 +8,7 @@ import Contact from "./Pages/Contact/Contact";
 import Post from "./Pages/Post/Post";
 import PostEdit from "./Pages/PostEdit/PostEdit";
 import Layout from "./Pages/Layout/Layout";
+import Logout from "./Pages/Logout/Logout";
 
 const routes = createBrowserRouter([
   {
@@ -21,6 +22,7 @@ const routes = createBrowserRouter([
       { path: "signup", element: <Signup /> },
       { path: "control", element: <DashBoard /> },
       { path: "contact", element: <Contact /> },
+      { path: "logout", element: <Logout /> },
     ],
   },
 ]);

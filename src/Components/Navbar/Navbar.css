@@ -16,3 +16,14 @@
 .nav__height {
   height: 70px;
 }
+.user__avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+.user__avatar img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}

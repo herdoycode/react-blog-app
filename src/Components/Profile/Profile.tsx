@@ -1,12 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import ModeEditOutlinedIcon from "@mui/icons-material/ModeEditOutlined";
+import AuthContext from "../../auth/AuthContext";
 
 const Profile = () => {
-  const user = {
-    name: "herdoy",
-    avatar: "https://i.ibb.co/hYTJZXx/me-removebg-preview.jpg",
-    email: "herdoy1@gmail.com",
-  };
+  const { user } = useContext(AuthContext);
+
+  if (!user) return null;
 
   return (
     <div className="profile">

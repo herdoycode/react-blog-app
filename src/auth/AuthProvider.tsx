@@ -13,8 +13,8 @@ interface Auth {
 
 const AuthProvider = ({ children }: Props) => {
   const token = localStorage.getItem("token");
-  const { _id } = jwtDecode<Auth>(token!);
-
+  if (!token) return <> {children} </>;
+  const { _id } = jwtDecode<Auth>(token);
   const { data: user } = useAuth(_id);
   if (user)
     return (

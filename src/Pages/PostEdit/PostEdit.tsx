@@ -81,6 +81,7 @@ const PostEdit = () => {
               type="text"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
+              placeholder="Title..."
             />
             <select
               onChange={(e) => setCategoryId(e.target.value)}
@@ -99,10 +100,16 @@ const PostEdit = () => {
               type="text"
               value={thumbnail}
               onChange={(e) => setThumbnail(e.target.value)}
+              placeholder="Thumbnail..."
             />
 
             <div className="mb-3">
-              <ReactQuill theme="snow" value={value} onChange={setValue} />
+              <ReactQuill
+                theme="snow"
+                value={value}
+                onChange={setValue}
+                placeholder="Post Content..."
+              />
             </div>
             <button type="submit" className="btn btn btn-primary w-100">
               {id === "new" ? "Post" : "Update"}

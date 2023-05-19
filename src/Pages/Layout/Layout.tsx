@@ -8,9 +8,9 @@ const Layout = () => {
   return (
     <>
       <Navbar />
-      <ToastContainer />
       <Outlet />
       <Footer />
+      <ToastContainer position="top-center" />
     </>
   );
 };

@@ -24,7 +24,7 @@ const Login = () => {
                   })
                   .then((res) => {
                     localStorage.setItem("token", res.data);
-                    navigate("/");
+                    window.location.href = "/";
                   })
                   .catch((err) => toast(err.message));
             }}

@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./Navbar.css";
 import { NavLink, Link, useNavigate } from "react-router-dom";
+import AuthContext from "../../auth/AuthContext";
 
 const Navbar = () => {
+  const { user } = useContext(AuthContext) || "";
   const navigate = useNavigate();
   return (
     <>
@@ -34,28 +36,43 @@ const Navbar = () => {
                       Home
                     </NavLink>
                   </li>
+
+                  {!user && (
+                    <>
+                      <li className="nav__item">
+                        <NavLink to="/login" className="nav__link nav-link">
+                          Login
+                        </NavLink>
+                      </li>
+                      <li className="nav__item">
+                        <NavLink to="/signup" className="nav__link nav-link">
+                          Signup
+                        </NavLink>
+                      </li>
+                    </>
+                  )}
                   <li className="nav__item">
                     <NavLink to="/contact" className="nav__link nav-link">
                       Contact
                     </NavLink>
                   </li>
-
-                  <li className="nav__item">
-                    <NavLink to="/login" className="nav__link nav-link">
-                      Login
-                    </NavLink>
-                  </li>
-                  <li className="nav__item">
-                    <NavLink to="/signup" className="nav__link nav-link">
-                      Signup
-                    </NavLink>
-                  </li>
-
-                  <li className="nav__item">
-                    <NavLink to="/control" className="nav__link nav-link">
-                      Dashboard
-                    </NavLink>
-                  </li>
+                  {user && (
+                    <>
+                      <li className="nav__item">
+                        <NavLink to="/control" className="nav__link nav-link">
+                          Dashboard
+                        </NavLink>
+                      </li>
+                      <li className="nav__item">
+                        <NavLink to="/logout" className="nav__link nav-link">
+                          Logout
+                        </NavLink>
+                      </li>
+                      <div className="user__avatar ms-2">
+                        <img src={user.avatar} alt="User Avatar" />
+                      </div>
+                    </>
+                  )}
                 </div>
               </div>
             </div>

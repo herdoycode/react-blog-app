@@ -56,7 +56,7 @@ const Posts = () => {
                 </div>
                 <div className="post__author">
                   <Person2OutlinedIcon className="post__icon" />
-                  <span>by {post.author.name}</span>
+                  <span>by {post.author?.name}</span>
                 </div>
                 <div className="post__comment__share">
                   <ModeCommentOutlinedIcon className="post__icon" />
