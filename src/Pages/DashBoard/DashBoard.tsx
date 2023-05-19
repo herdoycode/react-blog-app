@@ -1,8 +1,6 @@
 import React from "react";
 import "./DashBoard.css";
 import { useState } from "react";
-import Navbar from "../../Components/Navbar/Navbar";
-import { useNavigate } from "react-router-dom";
 import PostTable from "../../Components/PostsTable/PostTable";
 import Profile from "../../Components/Profile/Profile";
 import MessageTable from "../../Components/MessageTable/MessageTable";
@@ -29,7 +27,6 @@ const DashBoard = () => {
   };
   return (
     <>
-      <Navbar />
       <div className="container">
         <div className="dashboard">
           <div className="db__left">

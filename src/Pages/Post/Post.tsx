@@ -7,7 +7,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import Call from "../../Components/Call/Call";
 import Copyright from "../../Components/Copyright/Copyright";
 import Footer from "../../Components/Footer/Footer";
-import Navbar from "../../Components/Navbar/Navbar";
 import RecentPosts from "../../Components/RecentPosts/RecentPosts";
 import "./Post.css";
 import usePost from "../../hooks/usePost";
@@ -24,16 +23,15 @@ const Post = () => {
 
   return (
     <>
-      <Navbar />
-      <div className="container">
-        <button
-          onClick={() => navigate("/")}
-          className="btn btn__primary my-5 back"
-        >
-          <KeyboardBackspaceIcon />
-        </button>
-      </div>
       <div className="post__wrapper">
+        <div className="container">
+          <button
+            onClick={() => navigate("/")}
+            className="btn btn__primary my-5 back"
+          >
+            <KeyboardBackspaceIcon />
+          </button>
+        </div>
         <div className="container">
           <div className="single__post">
             <div className="single__post__left">
@@ -71,8 +69,6 @@ const Post = () => {
           </div>
         </div>
         <Call />
-        <Footer />
-        <Copyright />
       </div>
     </>
   );

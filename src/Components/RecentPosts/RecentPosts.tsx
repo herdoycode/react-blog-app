@@ -2,7 +2,7 @@ import React from "react";
 import moment from "moment";
 import "./RecentPosts.css";
 import SidebarTitle from "../SidebarTitle/SidebarTitle";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import usePosts from "../../hooks/usePosts";
 
 const RecentPosts = () => {
@@ -19,7 +19,7 @@ const RecentPosts = () => {
 
       {posts?.map((post) => (
         <div
-          onClick={() => navigate(`posts/${post._id}`)}
+          onClick={() => navigate(`/posts/${post._id}`)}
           key={post._id}
           className="recent__posts"
         >

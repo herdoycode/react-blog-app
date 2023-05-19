@@ -1,7 +1,10 @@
+.post__wrapper {
+  margin-top: 50px;
+}
 .single__post {
   display: grid;
   grid-template-columns: 4fr 2fr;
-  margin-bottom: 80px;
+  margin-bottom: 70px;
 }
 
 .single__post__left h2 {
@@ -71,7 +74,7 @@
   margin-top: 20px;
 }
 
-.commentsContainer{
+.commentsContainer {
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;

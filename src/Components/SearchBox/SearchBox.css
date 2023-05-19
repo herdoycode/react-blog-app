@@ -14,12 +14,13 @@
   background: transparent;
   font-size: 16px;
   color: #888;
+  padding: 14px 0px;
 }
 .search__box button {
   flex: 1;
 }
 
 .search__box .search__icon {
-  flex: 1;
   color: #a0a0a0;
+  margin-right: 5px;
 }

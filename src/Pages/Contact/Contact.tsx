@@ -1,13 +1,11 @@
 import React from "react";
 import "./Contact.css";
-import Navbar from "../../Components/Navbar/Navbar";
 import SendOutlinedIcon from "@mui/icons-material/SendOutlined";
 import Footer from "../../Components/Footer/Footer";
 
 const Contact = () => {
   return (
     <>
-      <Navbar />
       <div className="contact">
         <div className="contact__box">
           <h2>Send Message</h2>
@@ -19,7 +17,6 @@ const Contact = () => {
           </button>
         </div>
       </div>
-      <Footer />
     </>
   );
 };

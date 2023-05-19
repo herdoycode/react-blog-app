@@ -2,7 +2,6 @@ import "./PostEdit.css";
 import React from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import Navbar from "../../Components/Navbar/Navbar";
 import useCategorys from "../../hooks/useCategorys";
 import Loading from "../../Components/Loading/Loading";
 
@@ -12,7 +11,6 @@ const PostEdit = () => {
   if (error) return <p> {error.message} </p>;
   return (
     <>
-      <Navbar />
       <div className="container">
         <div className="post__edit">
           <input type="text" name="title" placeholder="Title..." />
@@ -31,7 +29,7 @@ const PostEdit = () => {
             placeholder="Write Your Content..."
           />
           <input name="thumbnail" type="text" placeholder="Thumbnail Url..." />
-          <button className="btn btn__primary w-100">Post</button>
+          <button className="btn btn-primary w-100">Post</button>
         </div>
       </div>
     </>

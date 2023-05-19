@@ -45,7 +45,7 @@ const Posts = () => {
             <div className="post__img">
               <img src={post.thumbnail} alt="" />
               <div className="post__content">
-                <h2 onClick={() => navigate(`posts/${post._id}`)}>
+                <h2 onClick={() => navigate(`/posts/${post._id}`)}>
                   {post.title}
                 </h2>
               </div>
