@@ -43,7 +43,7 @@ const Post = () => {
                   </div>
                   <div>
                     <PermIdentityIcon className="icon" />
-                    <p>{data.author.name}</p>
+                    <p>{data.author?.name}</p>
                   </div>
                 </div>
               </div>
@@ -51,7 +51,7 @@ const Post = () => {
               <hr />
               <div
                 className="my-5"
-                dangerouslySetInnerHTML={{ __html: data.content }}
+                dangerouslySetInnerHTML={{ __html: data.content! }}
               />
               <hr />
               <div className="comments">
