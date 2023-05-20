@@ -1,11 +1,20 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import "./DashBoard.css";
 import { useState } from "react";
 import PostTable from "../../Components/PostsTable/PostTable";
 import Profile from "../../Components/Profile/Profile";
 import MessageTable from "../../Components/MessageTable/MessageTable";
+import { useNavigate } from "react-router-dom";
+import AuthContext from "../../auth/AuthContext";
 
 const DashBoard = () => {
+  const navigate = useNavigate();
+  const { user } = useContext(AuthContext);
+
+  useEffect(() => {
+    if (!user) navigate("/login");
+  }, []);
+
   const actions = [
     { id: 1, name: "Profile" },
     { id: 2, name: "Posts" },

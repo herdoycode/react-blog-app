@@ -12,8 +12,14 @@ import useEditPost from "../../hooks/useEditPost";
 import AuthContext from "../../auth/AuthContext";
 
 const PostEdit = () => {
-  const { id } = useParams();
   const navigate = useNavigate();
+  const { user } = useContext(AuthContext);
+
+  useEffect(() => {
+    if (!user) navigate("/login");
+  }, []);
+
+  const { id } = useParams();
   const redirect = () => navigate("/control");
   const addPost = useAddPost(redirect);
 
@@ -26,8 +32,6 @@ const PostEdit = () => {
   const [categoryId, setCategoryId] = useState<string>();
   const [error, setError] = useState<any>();
   const [loading, setLoading] = useState<boolean>(false);
-
-  const { user } = useContext(AuthContext);
 
   useEffect(() => {
     if (id === "new") return;

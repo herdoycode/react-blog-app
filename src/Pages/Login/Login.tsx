@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { toast } from "react-toastify";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
 import { useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi";
 import Joi from "joi";
 import apiClient from "../../services/apiClient";
 import Spinner from "../../Components/Spenner/Spinner";
+import AuthContext from "../../auth/AuthContext";
 
 const schema = Joi.object({
   email: Joi.string().min(5).max(200).required().label("Email"),
@@ -19,6 +20,13 @@ interface FormData {
 }
 
 const Login = () => {
+  const navigate = useNavigate();
+  const { user } = useContext(AuthContext);
+
+  useEffect(() => {
+    if (user) navigate("/");
+  }, []);
+
   const [loading, setLoding] = useState<Boolean>(false);
   const {
     register,
