@@ -1,80 +1,108 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import "./Signup.css";
-import apiClient from "../../services/apiClient";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
+import "./Signup.css";
+import { useForm } from "react-hook-form";
+import { joiResolver } from "@hookform/resolvers/joi";
+import Joi from "joi";
+import apiClient from "../../services/apiClient";
+import Spinner from "../../Components/Spenner/Spinner";
+
+const schema = Joi.object({
+  name: Joi.string().max(200).required().label("Name"),
+  email: Joi.string().min(5).max(200).required().label("Email"),
+  password: Joi.string().min(8).max(1000).required().label("Password"),
+  avatar: Joi.string().min(5).max(1000).required().label("Avatar Url"),
+});
+
+interface FormData {
+  name: string;
+  email: string;
+  password: string;
+  avatar: string;
+}
 
 const Signup = () => {
-  const navigate = useNavigate();
-  const [user, setUser] = useState({
-    name: "",
-    email: "",
-    password: "",
-    avatar: "",
-  });
   const [loading, setLoading] = useState<Boolean>(false);
-  const [error, setError] = useState<string>("");
-
-  const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
-    const userClone = { ...user };
-    userClone[e.currentTarget.name] = e.currentTarget.value;
-    setUser(userClone);
-  };
-
-  if (error) toast.error(error);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>({ resolver: joiResolver(schema) });
 
   return (
-    <div className="signup">
-      <div className="signup__box">
-        <h2>Signup</h2>
+    <div className="login">
+      <div className="login__box">
+        <h2 className="text-center mb-4">Signup</h2>
         <form
-          onSubmit={(e) => {
-            e.preventDefault();
+          onSubmit={handleSubmit((data) => {
             setLoading(true);
             apiClient
-              .post("/users", user)
+              .post("/users", data)
               .then((res) => {
                 localStorage.setItem("token", res.headers["x-auth-token"]);
                 setLoading(false);
-                navigate("/");
+                window.location.href = "/";
               })
               .catch((err) => {
-                setError(err.message);
+                toast.error(err.message);
                 setLoading(false);
               });
-          }}
+          })}
+          className="w-100"
         >
-          <input
-            name="name"
-            value={user.name}
-            onChange={handleChange}
-            type="text"
-            placeholder="Full Name.."
-          />
-          <input
-            name="email"
-            value={user.email}
-            onChange={handleChange}
-            type="text"
-            placeholder="Email Address..."
-          />
-          <input
-            name="password"
-            value={user.password}
-            onChange={handleChange}
-            type="text"
-            placeholder="Password..."
-          />
-          <input
-            name="avatar"
-            value={user.avatar}
-            onChange={handleChange}
-            type="text"
-            placeholder="Avatar url..."
-          />
-          <button>Signup</button>
+          <div className="mb-3">
+            <input
+              {...register("name")}
+              type="name"
+              className="form-control"
+              placeholder="Full name..."
+            />
+            {errors.name && (
+              <p className="text-danger"> {errors.name.message} </p>
+            )}
+          </div>
+          <div className="mb-3">
+            <input
+              {...register("email")}
+              type="email"
+              className="form-control"
+              placeholder="Email..."
+            />
+            {errors.email && (
+              <p className="text-danger"> {errors.email.message} </p>
+            )}
+          </div>
+          <div className="mb-3">
+            <input
+              {...register("password")}
+              type="password"
+              className="form-control"
+              placeholder="Passwrod..."
+            />
+            {errors.password && (
+              <p className="text-danger"> {errors.password.message} </p>
+            )}
+          </div>
+          <div className="mb-3">
+            <input
+              {...register("avatar")}
+              type="text"
+              className="form-control"
+              placeholder="Avatar url..."
+            />
+            {errors.avatar && (
+              <p className="text-danger"> {errors.avatar.message} </p>
+            )}
+          </div>
+
+          <button type="submit" className="btn btn-primary">
+            {loading ? <Spinner /> : "Login"}
+          </button>
+          <p className="text-center mt-3">
+            <Link to="/login">Already have Account? Login</Link>
+          </p>
         </form>
-        <Link to="/login">Already have Account? Login</Link>
       </div>
     </div>
   );
