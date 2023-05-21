@@ -1,6 +1,5 @@
 .footer__wrapper {
-  background: url("https://img.freepik.com/free-photo/vivid-blurred-colorful-background_58702-2515.jpg?w=900&t=st=1684666940~exp=1684667540~hmac=9896204e04bb4324e56c36154293b0c22c50dfdf8bfd72da0a39d645d92e58d7")
-    no-repeat center;
+  background: url(../../../public/avi.webp) no-repeat center;
   padding: 40px 0px;
   background-size: cover;
 }

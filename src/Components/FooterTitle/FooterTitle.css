@@ -1,5 +1,5 @@
 .footer__title {
-  color: #fff;
+  color: var(--text-color);
   position: relative;
 }
 .footer__title::after {
