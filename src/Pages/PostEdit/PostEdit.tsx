@@ -17,7 +17,7 @@ import "./PostEdit.css";
 
 const schema = Joi.object({
   title: Joi.string().max(300).required().label("Title"),
-  thumbnail: Joi.string().min(5).max(200).required().label("Thumbnail"),
+  thumbnail: Joi.string().uri().min(5).max(200).required().label("Thumbnail"),
   content: Joi.string().max(6000).required().label("Content"),
   categoryId: Joi.string().max(300).required().label("Category"),
 });
