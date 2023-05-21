@@ -1,5 +1,5 @@
 .call__wrapper {
-  background: url(https://i.ibb.co/0FFrMPj/bg-call.jpg) no-repeat center center;
+  box-shadow: var(--box-shadow);
 }
 .call {
   height: 400px;
@@ -15,12 +15,10 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  cursor: pointer;
 }
 .call__left button {
-  border-radius: 15px;
-  background: var(--color-gray);
-  font-weight: 600;
-  color: var(--color-primary);
+  width: 200px;
 }
 .call__left h2 {
   font-size: 30px;
@@ -38,7 +36,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--color-primary);
+  background: linear-gradient(45deg, var(--color-primary), var(--primary-alt));
   color: #fff;
   font-weight: 900;
   margin-right: 10px;

@@ -5,7 +5,7 @@
   gap: 20px;
 }
 .post {
-  box-shadow: 0 0 10px rgba(31, 66, 135, 0.3);
+  box-shadow: var(--box-shadow);
   border-radius: 10px;
   overflow: hidden;
   margin-bottom: 20px;
@@ -52,7 +52,7 @@
   margin-bottom: 10px;
 }
 .post__content h2:hover {
-  color: var(--primary-alt);
+  color: var(--color-primary);
   transition: 0.1s;
 }
 

@@ -9,7 +9,7 @@ const Call = () => {
       <div className="container">
         <div className="call">
           <div className="call__left">
-            <button className="btn btn-primary">More About Us</button>
+            <button className="btnn">More About Us</button>
             <h2>You Want To Showcase Your Website In Top Join With Us</h2>
           </div>
           <div onClick={() => navigate("/contact")} className="call__right">

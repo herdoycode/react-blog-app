@@ -3,11 +3,11 @@
   align-items: center;
   justify-content: center;
   height: 40px;
-  background: #ff9f9f;
+  background: linear-gradient(45deg, var(--color-primary), var(--primary-alt));
   color: #fff;
   text-align: center;
 }
-.copyright p{
+.copyright p {
   margin: 0;
   padding: 0;
 }

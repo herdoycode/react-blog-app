@@ -10,8 +10,9 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  background: #fff;
-  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+  background: var(--color-white);
+  box-shadow: var(--box-shadow);
+  color: var(--color-text);
 }
 .page__item:hover {
   background: linear-gradient(90deg, var(--color-primary), var(--primary-alt));
@@ -26,7 +27,7 @@
   border: none;
   outline: none;
 }
-.fuck{
-  background: linear-gradient(90deg, var(--color-primary), var(--primary-alt));;
+.fuck {
+  background: linear-gradient(90deg, var(--color-primary), var(--primary-alt));
   color: #fff;
 }

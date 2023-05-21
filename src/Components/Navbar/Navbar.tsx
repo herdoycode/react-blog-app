@@ -1,7 +1,9 @@
 import React, { useContext } from "react";
 import "./Navbar.css";
 import { NavLink, Link, useNavigate } from "react-router-dom";
+import MenuIcon from "@mui/icons-material/Menu";
 import AuthContext from "../../auth/AuthContext";
+import ThemeSwitch from "../ThemeSwitch/ThemeSwitch";
 
 const Navbar = () => {
   const { user } = useContext(AuthContext) || "";
@@ -19,7 +21,7 @@ const Navbar = () => {
                 BLOG
               </div>
               <button
-                className="navbar-toggler"
+                className="toggler"
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#navbarNavAltMarkup"
@@ -27,7 +29,7 @@ const Navbar = () => {
                 aria-expanded="false"
                 aria-label="Toggle navigation"
               >
-                <span className="navbar-toggler-icon"></span>
+                <MenuIcon className="navbar-toggler-icon" />
               </button>
               <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div className="navbar-nav ms-auto">
@@ -68,11 +70,16 @@ const Navbar = () => {
                           Logout
                         </NavLink>
                       </li>
-                      <div className="user__avatar ms-2">
-                        <img src={user.avatar} alt="User Avatar" />
-                      </div>
+                      <li className="nav__link nav-link">
+                        <div className="user__avatar ms-2">
+                          <img src={user.avatar} alt="User Avatar" />
+                        </div>
+                      </li>
                     </>
                   )}
+                  <li className="nav__item ms-3">
+                    <ThemeSwitch />
+                  </li>
                 </div>
               </div>
             </div>
