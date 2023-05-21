@@ -44,6 +44,11 @@ h3 {
   font-size: 20px;
 }
 
+th,
+td {
+  color: var(--color-text) !important;
+}
+
 select,
 input,
 textarea {

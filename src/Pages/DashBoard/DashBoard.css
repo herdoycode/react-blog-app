@@ -77,3 +77,6 @@ select {
   border: 1px solid #ddd;
   padding: 8px 10px;
 }
+.nav_text {
+  color: var(--color-text);
+}

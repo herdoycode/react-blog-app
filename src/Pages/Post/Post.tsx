@@ -2,7 +2,7 @@ import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 import moment from "moment";
-import React from "react";
+import React, { useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Call from "../../Components/Call/Call";
 import RecentPosts from "../../Components/RecentPosts/RecentPosts";
@@ -10,9 +10,12 @@ import "./Post.css";
 import usePost from "../../hooks/usePost";
 import Loading from "../../Components/Loading/Loading";
 import CommentBox from "../../Components/CommentBox/CommentBox";
+import Comments from "../../Components/Comments/Comments";
+import AuthContext from "../../auth/AuthContext";
 
 const Post = () => {
   const { id } = useParams();
+  const { user } = useContext(AuthContext);
 
   const navigate = useNavigate();
   const { data, error, isLoading } = usePost(id!);
@@ -54,8 +57,14 @@ const Post = () => {
                 className="my-5"
                 dangerouslySetInnerHTML={{ __html: data.content! }}
               />
+              {user && <hr />}
+              <div className="w-100">
+                {user && <CommentBox postId={data._id!} />}
+              </div>
               <hr />
-              <CommentBox postId={data._id!} />
+              <div className="mb-4">
+                <Comments postId={data._id!} />
+              </div>
             </div>
             <div className="single__post__right">
               <RecentPosts />

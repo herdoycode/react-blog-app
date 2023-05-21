@@ -48,7 +48,7 @@ const DashBoard = () => {
                     background: "transparent",
                     border: "none",
                   }}
-                  className="list-group-item"
+                  className="list-group-item nav_text"
                   onClick={() => setAction(action.name)}
                 >
                   {action.name}
