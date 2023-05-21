@@ -1,4 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import {toast} from 'react-toastify'
 import Post from "../entities/Post";
 import apiClient from "../services/apiClient";
 
@@ -31,7 +32,7 @@ const useDeletePost = () => {
 
     onError: (error, newTodo, context) => {
       if (!context) return;
-
+      toast.error(error.message)
       queryClient.setQueryData<Post[]>(["posts"], context.previousPost);
     },
   });

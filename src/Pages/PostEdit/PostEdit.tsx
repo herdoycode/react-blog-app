@@ -44,6 +44,7 @@ const PostEdit = () => {
   const editPost = useEditPost(id!, redirect);
 
   const [loading, setLoding] = useState<Boolean>(false);
+  const [isLoading, setIsLoding] = useState<Boolean>(false);
   const {
     reset,
     register,
@@ -96,7 +97,7 @@ const PostEdit = () => {
         ) : (
           <form
             onSubmit={handleSubmit((data) => {
-              setLoding(true);
+              setIsLoding(true);
               id === "new"
                 ? addPost.mutate({ authorId: user._id, ...data })
                 : editPost.mutate(data);
@@ -149,8 +150,12 @@ const PostEdit = () => {
               )}
             </div>
 
-            <button disabled={loading === true} type="submit" className="btnn">
-              {loading ? <Spinner /> : "Submit"}
+            <button
+              disabled={isLoading === true}
+              type="submit"
+              className="btnn"
+            >
+              {isLoading ? <Spinner /> : "Submit"}
             </button>
           </form>
         )}

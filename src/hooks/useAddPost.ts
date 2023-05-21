@@ -1,4 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import {toast} from 'react-toastify'
 import Post from "../entities/Post";
 import apiClient from "../services/apiClient";
 
@@ -16,6 +17,9 @@ const useAddPost = (redirect: () => void) => {
       ]);
       redirect();
     },
+    onError: (error, post, context) => {
+      toast.error(error.message)
+    }
   });
 };
 
