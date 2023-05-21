@@ -56,13 +56,7 @@ const Login = () => {
           className="w-100"
         >
           <div className="mb-3">
-            <input
-              {...register("email")}
-              type="email"
-              className="form-control"
-              id="email"
-              placeholder="Email..."
-            />
+            <input {...register("email")} type="email" placeholder="Email..." />
             {errors.email && (
               <p className="text-danger"> {errors.email.message} </p>
             )}
@@ -71,8 +65,6 @@ const Login = () => {
             <input
               {...register("password")}
               type="password"
-              className="form-control"
-              id="password"
               placeholder="Password..."
             />
             {errors.password && (
@@ -80,11 +72,13 @@ const Login = () => {
             )}
           </div>
 
-          <button type="submit" className="btn btn-primary">
+          <button disabled={loading === true} type="submit" className="btnn">
             {loading ? <Spinner /> : "Login"}
           </button>
-          <p className="text-center mt-3">
-            <Link to="/signup">Create new account</Link>
+          <p className="text-center mt-3 link">
+            <Link to="/signup" style={{ color: "inherit" }}>
+              Create new account
+            </Link>
           </p>
         </form>
       </div>

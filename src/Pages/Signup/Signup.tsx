@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
-import "./Signup.css";
 import { useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi";
 import Joi from "joi";
@@ -63,7 +62,6 @@ const Signup = () => {
             <input
               {...register("name")}
               type="name"
-              className="form-control"
               placeholder="Full name..."
             />
             {errors.name && (
@@ -71,12 +69,7 @@ const Signup = () => {
             )}
           </div>
           <div className="mb-3">
-            <input
-              {...register("email")}
-              type="email"
-              className="form-control"
-              placeholder="Email..."
-            />
+            <input {...register("email")} type="email" placeholder="Email..." />
             {errors.email && (
               <p className="text-danger"> {errors.email.message} </p>
             )}
@@ -85,7 +78,6 @@ const Signup = () => {
             <input
               {...register("password")}
               type="password"
-              className="form-control"
               placeholder="Passwrod..."
             />
             {errors.password && (
@@ -96,7 +88,6 @@ const Signup = () => {
             <input
               {...register("avatar")}
               type="text"
-              className="form-control"
               placeholder="Avatar url..."
             />
             {errors.avatar && (
@@ -104,11 +95,13 @@ const Signup = () => {
             )}
           </div>
 
-          <button type="submit" className="btn btn-primary">
-            {loading ? <Spinner /> : "Login"}
+          <button disabled={loading === true} type="submit" className="btnn">
+            {loading ? <Spinner /> : "Submit"}
           </button>
-          <p className="text-center mt-3">
-            <Link to="/login">Already have Account? Login</Link>
+          <p className="text-center mt-3 link">
+            <Link to="/login" style={{ color: "inherit" }}>
+              Already have Account? Login
+            </Link>
           </p>
         </form>
       </div>

@@ -31,6 +31,47 @@ h3 {
   font-size: 20px;
 }
 
+
+
+select, input,textarea {
+  width: 100%;
+  padding: 15px 20px;
+  outline: none;
+  border-radius: 8px;
+  border: none;
+  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1);
+  font-size: 15px;
+  letter-spacing: 1px;
+  margin-bottom: 13px;
+}
+.link{
+  color: var(--color-primary)
+}
+
+
+.btnn{
+  width: 100%;
+  outline: none;
+  border-radius: 27px;
+  border: none;
+  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1);
+  font-size: 18px;
+  background: linear-gradient(45deg, var(--color-primary), var(--primary-alt));
+  color: #fff;
+  cursor: pointer;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.btnn:hover {
+  color:#fff;
+  background: linear-gradient(45deg, var(--primary-alt), var(--color-primary));
+  transition: 0.3s ease-in-out;
+}
+
+
+
 .container,
 .container-fluid,
 .container-xxl,
