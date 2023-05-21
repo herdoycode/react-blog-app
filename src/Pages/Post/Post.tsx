@@ -9,6 +9,7 @@ import RecentPosts from "../../Components/RecentPosts/RecentPosts";
 import "./Post.css";
 import usePost from "../../hooks/usePost";
 import Loading from "../../Components/Loading/Loading";
+import CommentBox from "../../Components/CommentBox/CommentBox";
 
 const Post = () => {
   const { id } = useParams();
@@ -54,13 +55,7 @@ const Post = () => {
                 dangerouslySetInnerHTML={{ __html: data.content! }}
               />
               <hr />
-              <div className="comments">
-                <h2 className="mb-5">Put your comment</h2>
-                <div className="comment__box mb-5">
-                  <textarea></textarea>
-                  <button className="btn btn__primary">Comment</button>
-                </div>
-              </div>
+              <CommentBox postId={data._id!} />
             </div>
             <div className="single__post__right">
               <RecentPosts />

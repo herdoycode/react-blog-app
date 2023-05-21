@@ -31,9 +31,9 @@ h3 {
   font-size: 20px;
 }
 
-
-
-select, input,textarea {
+select,
+input,
+textarea {
   width: 100%;
   padding: 15px 20px;
   outline: none;
@@ -44,12 +44,11 @@ select, input,textarea {
   letter-spacing: 1px;
   margin-bottom: 13px;
 }
-.link{
-  color: var(--color-primary)
+.link {
+  color: var(--color-primary);
 }
 
-
-.btnn{
+.btnn {
   width: 100%;
   outline: none;
   border-radius: 27px;
@@ -59,18 +58,16 @@ select, input,textarea {
   background: linear-gradient(45deg, var(--color-primary), var(--primary-alt));
   color: #fff;
   cursor: pointer;
-  height: 55px;
+  height: 45px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .btnn:hover {
-  color:#fff;
+  color: #fff;
   background: linear-gradient(45deg, var(--primary-alt), var(--color-primary));
   transition: 0.3s ease-in-out;
 }
-
-
 
 .container,
 .container-fluid,
