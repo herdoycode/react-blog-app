@@ -1,12 +1,14 @@
 import React, { useContext } from "react";
 import "./Navbar.css";
-import { NavLink, Link, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import AuthContext from "../../auth/AuthContext";
 import ThemeSwitch from "../ThemeSwitch/ThemeSwitch";
+import usePostQueryStore from "../../store";
 
 const Navbar = () => {
   const { user } = useContext(AuthContext) || "";
+  const setCategoryId = usePostQueryStore((s) => s.setCategoryId);
   const navigate = useNavigate();
   return (
     <>
@@ -16,7 +18,10 @@ const Navbar = () => {
             <div className="container-fluid">
               <div
                 className="nav__brand navbar-brand"
-                onClick={() => navigate("/")}
+                onClick={() => {
+                  navigate("/");
+                  setCategoryId("");
+                }}
               >
                 BLOG
               </div>

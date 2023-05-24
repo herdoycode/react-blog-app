@@ -12,8 +12,18 @@ const Category = () => {
   if (error) return <p>{error.message}</p>;
   return (
     <div className="category">
-      <SidebarTitle title={"Category"} />
+      <SidebarTitle title={"Categorys"} />
       <div className="categorys">
+        <div
+          onClick={() => setCategoryId("")}
+          className="category__item"
+          style={{ cursor: "pointer" }}
+        >
+          <span>All Category</span>
+          <span className="category__count">
+            <CheckCircleIcon color="inherit" />
+          </span>
+        </div>
         {categorys?.map((c) => (
           <div
             onClick={() => setCategoryId(c._id)}
