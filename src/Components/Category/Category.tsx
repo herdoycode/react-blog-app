@@ -7,6 +7,7 @@ import usePostQueryStore from "../../store";
 
 const Category = () => {
   const setCategoryId = usePostQueryStore((s) => s.setCategoryId);
+  const selectedCategory = usePostQueryStore((s) => s.postQuery.categoryId);
   const { data: categorys, error } = useCategorys();
   if (error) return <p>{error.message}</p>;
   return (
@@ -17,7 +18,11 @@ const Category = () => {
           <div
             onClick={() => setCategoryId(c._id)}
             key={c._id}
-            className="category__item"
+            className={
+              selectedCategory === c._id
+                ? "category__item category-active"
+                : "category__item"
+            }
             style={{ cursor: "pointer" }}
           >
             <span>{c.name}</span>
