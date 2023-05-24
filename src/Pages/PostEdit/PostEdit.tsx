@@ -98,9 +98,8 @@ const PostEdit = () => {
           <form
             onSubmit={handleSubmit((data) => {
               setIsLoding(true);
-              id === "new"
-                ? addPost.mutate({ authorId: user._id, ...data })
-                : editPost.mutate(data);
+              id === "new" ? addPost.mutate(data) : editPost.mutate(data);
+              setLoding(false);
             })}
             className="w-100"
           >
