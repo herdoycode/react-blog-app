@@ -15,7 +15,11 @@
   box-shadow: var(--box-shadow);
   color: var(--color-text);
 }
-.page__item,
+.page__item:hover {
+  background: linear-gradient(90deg, var(--color-primary), var(--primary-alt));
+  transition: 0.2s;
+  color: #fff;
+}
 .page__btn:hover {
   background: linear-gradient(90deg, var(--color-primary), var(--primary-alt));
   transition: 0.2s;
