@@ -1,7 +1,7 @@
 .dashboard {
   display: grid;
   grid-template-rows: repeat(1, 1fr);
-  grid-template-columns: 2fr 6fr;
+  grid-template-columns: 1fr 5fr;
   margin-top: 70px;
 }
 .db__left,
@@ -57,8 +57,7 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: #f0d5d5;
-  color: gray;
+  color: var(--color-text);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -74,9 +73,19 @@
 
 select {
   background: none;
-  border: 1px solid #ddd;
+  border: 1px solid var(--color-text);
   padding: 8px 10px;
 }
 .nav_text {
   color: var(--color-text);
+}
+
+@media screen and (max-width: 768px) {
+  .dashboard {
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+  }
+  .db__left {
+    display: none;
+  }
 }

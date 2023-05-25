@@ -19,8 +19,8 @@ const Footer = () => {
                   Illum excepturi repellendus saepe rem, corporis inventore a
                   numquam.
                 </p>
+                <SocialNav />
               </div>
-              <SocialNav />
             </div>
             <div className="footer__item">
               <FooterTitle title={"Out Links"} />

@@ -42,7 +42,7 @@ const PostTable = () => {
       <div className="d-flex align-items-center justify-content-between">
         <button
           onClick={() => navigate("/post/new")}
-          className="btn btn-primary"
+          className="btn btn-primary btn-sm"
         >
           New Post
         </button>
@@ -53,8 +53,6 @@ const PostTable = () => {
         <thead>
           <tr>
             <th>Title</th>
-            <th>Date</th>
-            <th>Category</th>
             <th>Update</th>
             <th>Delete</th>
           </tr>
@@ -63,8 +61,6 @@ const PostTable = () => {
           {currentPosts?.map((post) => (
             <tr key={post._id}>
               <td> {post.title} </td>
-              <td> {moment(post.createdAt).format("ll")} </td>
-              <td> {post.category?.name} </td>
               <td>
                 <button
                   onClick={() => navigate(`/post/${post._id}`)}

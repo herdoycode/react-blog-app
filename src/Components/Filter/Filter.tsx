@@ -10,7 +10,7 @@ const Filter = () => {
   if (error) return <p>{error.message}</p>;
   return (
     <div className="filter">
-      <p>Filter by Category:</p>
+      <p>Filter:</p>
       <select onChange={(e) => setCategoryId(e.currentTarget.value)}>
         <option value="">All posts</option>
         {categorys?.map((c) => (
