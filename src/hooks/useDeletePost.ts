@@ -1,39 +1,35 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import {toast} from 'react-toastify'
 import Post from "../entities/Post";
 import apiClient from "../services/apiClient";
+import { toast } from "react-toastify";
 
-interface AddTodoContext {
-  previousPost: Post[];
+interface DeletePostContext {
+  previousPosts: Post[];
 }
 
 const useDeletePost = () => {
   const queryClient = useQueryClient();
-
-  return useMutation<Post, Error, Post, AddTodoContext>({
-    mutationFn: (data: Post) =>
-      apiClient.delete<Post>(`/posts/${data._id}`).then((res) => res.data),
-
-    onMutate: (newTodo: Post) => {
-      const previousPost = queryClient.getQueryData<Post[]>(["posts"]) || [];
-
-      queryClient.setQueryData<Post[]>(["posts"], (posts = []) =>
-        posts.filter((p) => p._id !== newTodo._id)
+  return useMutation<Post, Error, Post, DeletePostContext>({
+    mutationFn: (post) =>
+      apiClient.delete(`/posts/${post._id}`).then((res) => res.data),
+    onMutate: async (deletedPost) => {
+      await queryClient.cancelQueries({ queryKey: ["posts"] });
+      const previousPosts = queryClient.getQueryData<Post[]>(["posts"]) || [];
+      queryClient.setQueryData<Post[]>(["posts"], (old = []) =>
+        old.filter((o) => o._id != deletedPost._id)
       );
-
-      return { previousPost };
+      return { previousPosts };
     },
-
-    onSuccess: (savedPost, newPost) => {
-      queryClient.setQueryData<Post[]>(["posts"], (todos) =>
-        todos?.map((post) => (post === newPost ? savedPost : post))
-      );
+    onSuccess: () => {
+      toast.success("Post successfully deleted");
     },
-
-    onError: (error, newTodo, context) => {
+    onError: (err, newTodo, context) => {
       if (!context) return;
-      toast.error(error.message)
-      queryClient.setQueryData<Post[]>(["posts"], context.previousPost);
+      queryClient.setQueryData(["posts"], context.previousPosts);
+      toast.error(err.message);
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries({ queryKey: ["posts"] });
     },
   });
 };

@@ -6,6 +6,7 @@ import Pagination from "../Pagination/Pagination";
 import usePosts from "./../../hooks/usePosts";
 import Loading from "../Loading/Loading";
 import useDeletePost from "../../hooks/useDeletePost";
+import Spinner from "../Spenner/Spinner";
 
 const PostTable = () => {
   const navigate = useNavigate();
@@ -71,6 +72,7 @@ const PostTable = () => {
               </td>
               <td>
                 <button
+                  disabled={deletePost.isLoading}
                   onClick={() => deletePost.mutate(post)}
                   className="btn btn-danger btn-sm"
                 >

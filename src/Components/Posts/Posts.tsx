@@ -4,11 +4,11 @@ import "./Posts.css";
 import Pagination from "../Pagination/Pagination";
 import AccessAlarmsOutlinedIcon from "@mui/icons-material/AccessAlarmsOutlined";
 import Person2OutlinedIcon from "@mui/icons-material/Person2Outlined";
-import ModeCommentOutlinedIcon from "@mui/icons-material/ModeCommentOutlined";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import PostSkeleton from "../PostSkeleton/PostSkeleton";
 import usePosts from "./../../hooks/usePosts";
+import CommentCount from "../CommentCount/CommentCount";
 
 const Posts = () => {
   const { data: posts, isLoading, error } = usePosts();
@@ -58,10 +58,7 @@ const Posts = () => {
                   <Person2OutlinedIcon className="post__icon" />
                   <span>by {post.author?.name}</span>
                 </div>
-                <div className="post__comment__share">
-                  <ModeCommentOutlinedIcon className="post__icon" />
-                  <span> {post.comment ? post.comment.length : 0} </span>
-                </div>
+                <CommentCount postId={post._id!} />
               </div>
             </div>
           </div>

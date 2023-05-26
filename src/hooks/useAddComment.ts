@@ -1,9 +1,9 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import {toast} from 'react-toastify'
+import { toast } from "react-toastify";
 import apiClient from "../services/apiClient";
 import Comment from "../entities/Comment";
 
-const useAddComment = (reload:()=> void) => {
+const useAddComment = (reload: () => void) => {
   const queryClient = useQueryClient();
 
   return useMutation<Comment, Error, Comment>({
@@ -15,13 +15,12 @@ const useAddComment = (reload:()=> void) => {
         savedComment,
         ...comments,
       ]);
-      reload()
+      reload();
     },
     onError: (error, post, context) => {
-      toast.error(error.message)
-    }
+      toast.error(error.message);
+    },
   });
 };
 
-
-export default useAddComment
+export default useAddComment;

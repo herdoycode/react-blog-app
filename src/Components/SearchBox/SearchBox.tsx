@@ -4,19 +4,16 @@ import "./SearchBox.css";
 import usePostQueryStore from "../../store";
 
 const SearchBox = () => {
-  const [text, setText] = useState<string>("");
   const setSearchText = usePostQueryStore((s) => s.setSearchText);
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    setSearchText(text);
-  };
+  const searchText = usePostQueryStore((s) => s.postQuery.searchText);
+
   return (
     <div className="search__box">
       <Search className="search__icon" />
-      <form onSubmit={handleSubmit}>
+      <form>
         <input
-          value={text}
-          onChange={(e) => setText(e.target.value)}
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
           placeholder="Search..."
           type="text"
         />
