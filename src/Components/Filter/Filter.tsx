@@ -1,7 +1,7 @@
 import React from "react";
+import usePostQueryStore from "../../store";
 import useCategorys from "./../../hooks/useCategorys";
 import Loading from "./../Loading/Loading";
-import usePostQueryStore from "../../store";
 
 const Filter = () => {
   const setCategoryId = usePostQueryStore((s) => s.setCategoryId);

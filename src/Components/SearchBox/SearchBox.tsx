@@ -1,7 +1,7 @@
-import React, { useState, FormEvent } from "react";
 import { Search } from "@mui/icons-material";
-import "./SearchBox.css";
+import React from "react";
 import usePostQueryStore from "../../store";
+import "./SearchBox.css";
 
 const SearchBox = () => {
   const setSearchText = usePostQueryStore((s) => s.setSearchText);

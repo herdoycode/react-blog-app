@@ -1,5 +1,5 @@
-import React from "react";
 import { Facebook, GitHub, Instagram, LinkedIn } from "@mui/icons-material";
+import React from "react";
 import "./SocialNav.css";
 
 const SocialNav = () => {

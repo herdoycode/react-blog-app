@@ -1,9 +1,9 @@
 import React from "react";
+import Copyright from "../Copyright/Copyright";
 import FooterTitle from "../FooterTitle/FooterTitle";
 import Lists from "../Lists/Lists";
 import SocialNav from "../SocialNav/SocialNav";
 import "./Footer.css";
-import Copyright from "../Copyright/Copyright";
 
 const Footer = () => {
   return (

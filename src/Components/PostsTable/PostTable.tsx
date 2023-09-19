@@ -1,12 +1,10 @@
 import React, { useState } from "react";
-import moment from "moment";
 import { useNavigate } from "react-router-dom";
+import useDeletePost from "../../hooks/useDeletePost";
 import Filter from "../Filter/Filter";
+import Loading from "../Loading/Loading";
 import Pagination from "../Pagination/Pagination";
 import usePosts from "./../../hooks/usePosts";
-import Loading from "../Loading/Loading";
-import useDeletePost from "../../hooks/useDeletePost";
-import Spinner from "../Spenner/Spinner";
 
 const PostTable = () => {
   const navigate = useNavigate();

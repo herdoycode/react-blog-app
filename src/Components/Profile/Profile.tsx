@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
 import ModeEditOutlinedIcon from "@mui/icons-material/ModeEditOutlined";
+import React, { useContext } from "react";
 import AuthContext from "../../auth/AuthContext";
 
 const Profile = () => {

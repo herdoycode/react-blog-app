@@ -1,11 +1,10 @@
-import React, { useContext, useEffect } from "react";
-import "./DashBoard.css";
-import { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import MessageTable from "../../Components/MessageTable/MessageTable";
 import PostTable from "../../Components/PostsTable/PostTable";
 import Profile from "../../Components/Profile/Profile";
-import MessageTable from "../../Components/MessageTable/MessageTable";
-import { useNavigate } from "react-router-dom";
 import AuthContext from "../../auth/AuthContext";
+import "./DashBoard.css";
 
 const DashBoard = () => {
   const navigate = useNavigate();

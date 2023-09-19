@@ -1,9 +1,8 @@
-import React, { useContext, useState } from "react";
-import AuthContext from "../../auth/AuthContext";
-import { useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi";
 import Joi from "joi";
+import React, { useContext } from "react";
+import { useForm } from "react-hook-form";
+import AuthContext from "../../auth/AuthContext";
 import useAddComment from "../../hooks/useAddComment";
 import Spinner from "../Spenner/Spinner";
 

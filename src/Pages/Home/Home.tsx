@@ -1,8 +1,8 @@
 import React from "react";
-import "./Home.css";
-import Hero from "../../Components/Hero/Hero";
-import Call from "../../Components/Call/Call";
 import Blogs from "../../Components/Blogs/Blogs";
+import Call from "../../Components/Call/Call";
+import Hero from "../../Components/Hero/Hero";
+import "./Home.css";
 
 const Home = () => {
   return (

@@ -5,13 +5,13 @@ import moment from "moment";
 import React, { useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Call from "../../Components/Call/Call";
-import RecentPosts from "../../Components/RecentPosts/RecentPosts";
-import "./Post.css";
-import usePost from "../../hooks/usePost";
-import Loading from "../../Components/Loading/Loading";
 import CommentBox from "../../Components/CommentBox/CommentBox";
 import Comments from "../../Components/Comments/Comments";
+import Loading from "../../Components/Loading/Loading";
+import RecentPosts from "../../Components/RecentPosts/RecentPosts";
 import AuthContext from "../../auth/AuthContext";
+import usePost from "../../hooks/usePost";
+import "./Post.css";
 
 const Post = () => {
   const { id } = useParams();

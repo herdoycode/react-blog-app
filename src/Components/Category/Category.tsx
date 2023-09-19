@@ -1,9 +1,9 @@
-import React from "react";
-import SidebarTitle from "../SidebarTitle/SidebarTitle";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import "./Category.css";
-import useCategorys from "./../../hooks/useCategorys";
+import React from "react";
 import usePostQueryStore from "../../store";
+import SidebarTitle from "../SidebarTitle/SidebarTitle";
+import useCategorys from "./../../hooks/useCategorys";
+import "./Category.css";
 
 const Category = () => {
   const setCategoryId = usePostQueryStore((s) => s.setCategoryId);

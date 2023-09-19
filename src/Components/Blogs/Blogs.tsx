@@ -1,7 +1,7 @@
 import React from "react";
-import "./Blogs.css";
 import Posts from "../Posts/Posts";
 import Sidebar from "../Sidebar/Sidebar";
+import "./Blogs.css";
 
 const Blogs = () => {
   return (

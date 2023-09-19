@@ -1,8 +1,8 @@
 import React from "react";
-import "./Sidebar.css";
-import SearchBox from "../SearchBox/SearchBox";
 import Category from "../Category/Category";
 import RecentPosts from "../RecentPosts/RecentPosts";
+import SearchBox from "../SearchBox/SearchBox";
+import "./Sidebar.css";
 
 const Sidebar = () => {
   return (

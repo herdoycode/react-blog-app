@@ -1,12 +1,12 @@
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import "bootstrap/dist/css/bootstrap.css";
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
-import "bootstrap/dist/css/bootstrap.css";
-import "react-toastify/dist/ReactToastify.css";
-import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { RouterProvider } from "react-router-dom";
-import routes from "./routes";
+import "react-toastify/dist/ReactToastify.css";
 import AuthProvider from "./auth/AuthProvider";
+import "./index.css";
+import routes from "./routes";
 
 const queryClient = new QueryClient();
 

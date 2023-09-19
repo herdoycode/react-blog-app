@@ -1,16 +1,15 @@
-import "./Navbar.css";
-import AuthContext from "../../auth/AuthContext";
-import { Link, NavLink, useNavigate } from "react-router-dom";
-import React, { useContext } from "react";
-import { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   BsFacebook,
-  BsTwitter,
-  BsLinkedin,
-  BsInstagram,
   BsGithub,
+  BsInstagram,
+  BsLinkedin,
+  BsTwitter,
 } from "react-icons/bs";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import AuthContext from "../../auth/AuthContext";
 import ThemeSwitch from "../themeSwitch/ThemeSwitch";
+import "./Navbar.css";
 
 const socialIcons = [
   { id: 1, link: "#", icon: <BsFacebook /> },

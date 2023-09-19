@@ -1,6 +1,6 @@
 import React from "react";
-import "./Lists.css";
 import { Link } from "react-router-dom";
+import "./Lists.css";
 
 const Lists = () => {
   return (

@@ -1,9 +1,9 @@
-import React from "react";
 import moment from "moment";
-import "./RecentPosts.css";
-import SidebarTitle from "../SidebarTitle/SidebarTitle";
-import { Link, useNavigate } from "react-router-dom";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import usePosts from "../../hooks/usePosts";
+import SidebarTitle from "../SidebarTitle/SidebarTitle";
+import "./RecentPosts.css";
 
 const RecentPosts = () => {
   let { data: posts, error } = usePosts();

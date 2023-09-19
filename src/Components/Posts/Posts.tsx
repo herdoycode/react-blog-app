@@ -1,14 +1,13 @@
-import React from "react";
-import moment from "moment";
-import "./Posts.css";
-import Pagination from "../Pagination/Pagination";
 import AccessAlarmsOutlinedIcon from "@mui/icons-material/AccessAlarmsOutlined";
 import Person2OutlinedIcon from "@mui/icons-material/Person2Outlined";
+import moment from "moment";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import CommentCount from "../CommentCount/CommentCount";
+import Pagination from "../Pagination/Pagination";
 import PostSkeleton from "../PostSkeleton/PostSkeleton";
 import usePosts from "./../../hooks/usePosts";
-import CommentCount from "../CommentCount/CommentCount";
+import "./Posts.css";
 
 const Posts = () => {
   const { data: posts, isLoading, error } = usePosts();
