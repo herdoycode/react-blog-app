@@ -86,3 +86,11 @@
   border-radius: 50%;
   object-fit: cover;
 }
+
+@media screen and (max-width: 900px) {
+  .single__post {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+  }
+}
