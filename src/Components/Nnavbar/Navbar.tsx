@@ -11,20 +11,11 @@ import AuthContext from "../../auth/AuthContext";
 import ThemeSwitch from "../ThemeSwitch/ThemeSwitch";
 import "./Navbar.css";
 
-const socialIcons = [
-  { id: 1, link: "#", icon: <BsFacebook /> },
-  { id: 2, link: "#", icon: <BsTwitter /> },
-  { id: 3, link: "#", icon: <BsLinkedin /> },
-  { id: 4, link: "#", icon: <BsInstagram /> },
-  { id: 5, link: "#", icon: <BsGithub /> },
-];
-
 const Navbar = () => {
   const [active, setActive] = useState<string>("nav__center");
   const [icon, setIcon] = useState<string>("toggle-icon");
 
   const { user } = useContext(AuthContext) || "";
-  const navigate = useNavigate();
 
   const handleToggle = () => {
     if (active === "nav__center") {
@@ -43,6 +34,13 @@ const Navbar = () => {
         <div className="container">
           <nav className="navbar">
             <div className="nav__left">
+              <div className="nav__toggler">
+                <div onClick={handleToggle} className={icon}>
+                  <div className="toggle-icon-1"></div>
+                  <div className="toggle-icon-2"></div>
+                  <div className="toggle-icon-3"></div>
+                </div>
+              </div>
               <Link to="/" className="nav__brand">
                 Blog
               </Link>
@@ -90,24 +88,9 @@ const Navbar = () => {
               </ul>
             </div>
             <div className="nav__right">
-              <div className="social-nav">
-                {socialIcons.map((item) => (
-                  <a key={item.id} href={item.link}>
-                    {item.icon}
-                  </a>
-                ))}
+              <div className="theme-switch">
+                <ThemeSwitch />
               </div>
-            </div>
-            <div className="nav__toggler">
-              <ThemeSwitch />
-              <div onClick={handleToggle} className={icon}>
-                <div className="toggle-icon-1"></div>
-                <div className="toggle-icon-2"></div>
-                <div className="toggle-icon-3"></div>
-              </div>
-            </div>
-            <div className="theme__switch">
-              <ThemeSwitch />
             </div>
           </nav>
         </div>
@@ -117,6 +100,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-function usePostQueryStore(arg0: (s: any) => any) {
-  throw new Error("Function not implemented.");
-}

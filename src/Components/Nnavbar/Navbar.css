@@ -9,13 +9,12 @@
 .navbar {
   display: grid;
   grid-template-rows: repeat(1, 1fr);
-  grid-template-columns: 1fr 1fr 1fr 40px;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 
 .nav__left,
 .nav__center,
-.nav__right,
-.theme__switch {
+.nav__right {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -23,9 +22,14 @@
   background: var(--color-body);
 }
 
+.nav__right{
+  justify-content: flex-end;
+}
+
 .nav__left {
   justify-content: flex-start;
 }
+
 .nav__brand {
   font-weight: 700;
   font-size: 25px;
@@ -52,35 +56,22 @@
   padding: 0;
 }
 
-.social-nav {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-}
-.social-nav a {
-  color: var(--color-primary);
-}
 @media screen and (max-width: 768px) {
   .nav__wrapper {
     z-index: 1000;
   }
   .navbar {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-  .theme__switch {
-    display: none;
+    grid-template-columns: 1fr 1fr;
   }
   .nav__toggler {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 2rem;
+    display: block;
   }
   .toggle-icon {
     cursor: pointer;
+    margin-right: 2rem;
   }
   .toggle-icon div {
-    width: 27px;
+    width: 25px;
     height: 2px;
     margin: 5px 0px;
     background: var(--color-text);
@@ -91,9 +82,7 @@
   .nav__toggler {
     z-index: 20;
   }
-  .nav__left {
-    justify-content: flex-start;
-  }
+  
   .nav__center {
     height: auto;
     position: fixed;
