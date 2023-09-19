@@ -10,7 +10,11 @@ import apiClient from "../../services/apiClient";
 import "./Login.css";
 
 const schema = Joi.object({
-  email: Joi.string().min(5).max(200).required().label("Email"),
+  email: Joi.string()
+    .min(5)
+    .required()
+    .email({ tlds: { allow: false } })
+    .label("Email"),
   password: Joi.string().min(8).max(1000).required().label("Password"),
 });
 
