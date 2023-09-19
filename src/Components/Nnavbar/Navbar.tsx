@@ -8,7 +8,7 @@ import {
 } from "react-icons/bs";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import AuthContext from "../../auth/AuthContext";
-import ThemeSwitch from "../themeSwitch/ThemeSwitch";
+import ThemeSwitch from "../ThemeSwitch/ThemeSwitch";
 import "./Navbar.css";
 
 const socialIcons = [
