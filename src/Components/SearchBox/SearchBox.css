@@ -1,27 +1,22 @@
 .search__box {
-  width: 100%;
   display: flex;
   border-radius: 27px;
   align-items: center;
   padding-left: 10px;
   box-shadow: var(--box-shadow);
-  margin-bottom: 20px;
 }
 .search__box input {
-  flex: 4;
   outline: none;
   border: none !important;
-  background: transparent !important;
+  background: transparent;
   font-size: 16px;
-  color: #888;
-  padding: 14px 0px;
-  box-shadow: none !important;
-}
-.search__box button {
-  flex: 1;
+  color: var(--color-text);
+  margin: 0 !important;
+  width: 100% !important;
+  box-shadow: none;
 }
 
+
 .search__box .search__icon {
-  color: #a0a0a0;
-  margin-right: 5px;
+  color: var(--color-text);
 }
