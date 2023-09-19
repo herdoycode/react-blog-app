@@ -10,7 +10,11 @@ import apiClient from "../../services/apiClient";
 
 const schema = Joi.object({
   sender: Joi.string().max(200).required().label("Name"),
-  email: Joi.string().min(5).max(200).required().label("Email"),
+  email: Joi.string()
+    .min(5)
+    .required()
+    .email({ tlds: { allow: false } })
+    .label("Email"),
   message: Joi.string().max(3000).required().label("Message"),
 });
 
