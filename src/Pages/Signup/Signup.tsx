@@ -1,4 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
+import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
+import { storage } from "../../firebase";
 import { toast } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
@@ -12,14 +14,14 @@ const schema = Joi.object({
   name: Joi.string().max(200).required().label("Name"),
   email: Joi.string().min(5).max(200).required().label("Email"),
   password: Joi.string().min(8).max(1000).required().label("Password"),
-  avatar: Joi.string().min(5).max(1000).required().label("Avatar Url"),
+  avatar: Joi.any(),
 });
 
 interface FormData {
   name: string;
   email: string;
   password: string;
-  avatar: string;
+  avatar: FileList;
 }
 
 const Signup = () => {
@@ -37,27 +39,35 @@ const Signup = () => {
     formState: { errors },
   } = useForm<FormData>({ resolver: joiResolver(schema) });
 
+  const onSubmit = async (data: FormData) => {
+    setLoading(true);
+    const file = data.avatar[0];
+    const storageRef = ref(storage, `${Date.now()}`);
+    await uploadBytesResumable(storageRef, file).then(() => {
+      getDownloadURL(storageRef).then(async (downloadURL: string) => {
+        apiClient
+          .post("/users", { ...data, avatar: downloadURL })
+          .then((res) => {
+            localStorage.setItem("token", res.headers["x-auth-token"]);
+            setLoading(false);
+            toast.success("Registered Success!");
+            setTimeout(() => {
+              window.location.href = "/";
+            }, 3000);
+          })
+          .catch((err) => {
+            setLoading(false);
+            toast.error(err.message);
+          });
+      });
+    });
+  };
+
   return (
     <div className="login">
       <div className="login__box">
         <h2 className="text-center mb-4">Signup</h2>
-        <form
-          onSubmit={handleSubmit((data) => {
-            setLoading(true);
-            apiClient
-              .post("/users", data)
-              .then((res) => {
-                localStorage.setItem("token", res.headers["x-auth-token"]);
-                setLoading(false);
-                window.location.href = "/";
-              })
-              .catch((err) => {
-                toast.error(err.message);
-                setLoading(false);
-              });
-          })}
-          className="w-100"
-        >
+        <form onSubmit={handleSubmit(onSubmit)} className="w-100">
           <div className="mb-3">
             <input
               {...register("name")}
@@ -85,11 +95,7 @@ const Signup = () => {
             )}
           </div>
           <div className="mb-3">
-            <input
-              {...register("avatar")}
-              type="text"
-              placeholder="Avatar url..."
-            />
+            <input {...register("avatar")} type="file" required />
             {errors.avatar && (
               <p className="text-danger"> {errors.avatar.message} </p>
             )}
